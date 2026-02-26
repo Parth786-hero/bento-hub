@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+:root{
+  font-size : 14.5px;
+}
+.font-thin {
+  font-weight : 100;
+}
+
+.font-extralight {
+  font-weight : 100;
+}
+
+.font-light {
+  font-weight : 200;
+}
+
+.font-normal {
+  font-weight : 300;
+}
+
+.font-medium {
+  font-weight : 400;
+}
+
+.font-semibold {
+  font-weight : 600;
+}
+
+.font-bold {
+  font-weight : 600;
+}
+
+.font-extrabold {
+  font-weight : 800;
+} 
+
+.font-black {
+  font-weight : 900;
+}
+@layer base {
+  body {
+    font-family: "Nunito Sans", sans-serif;
+  }
+}
+
+
+@theme {
+  --color-green: #00b894;
+ 
+  --color-white: #f5f6fa;
+}
+@theme {
+  --breakpoint-xs: 500px;
+ 
+}
+html, body {
+  min-height: 100%;
+  overflow-y: auto;
+}
+
+
+body {
+  /* background-color: rgba(128, 128, 128, 0.08); */
+  /* border : 2px solid red; */
+  position: relative;
+ 
+}
+.bg-thunk{
+  background-color: rgba(128, 128, 128, 0.08);
+}
+.btn {
+  @apply transform px-7 py-2 rounded-md font-semibold text-white bg-green hover:scale-103 transition-transform  duration-100 cursor-pointer;
+}
+.cart-btn {
+  @apply transform w-[7.8rem] h-[3.6rem] rounded-md font-semibold text-white bg-gray-400 hover:scale-103 transition-transform  duration-100 cursor-pointer;
+}
+.items-btn{
+  @apply transform bg-green w-[7.8rem] h-[3.6rem] rounded-md font-semibold text-white hover:scale-103 transition-transform  duration-100 cursor-pointer;
+}
+.specific-cart-btn {
+  @apply transform px-6 py-2 rounded-md font-semibold text-white bg-green hover:scale-103 transition-transform  duration-100 cursor-pointer;
+}
+.cart-btn:disabled:hover { @apply cursor-not-allowed; }
+.btn-secondary {
+  @apply transform px-14 py-2 rounded-md font-normal text-white bg-green hover:scale-103 transition-transform  duration-100 cursor-pointer;
+}
+.btn-temp {
+  @apply transform px-14 py-[.4rem] rounded-full tracking-wider font-normal text-black bg-gray-200 hover:scale-103 transition-transform  duration-100 cursor-pointer;
+}
+.btn-white{
+  @apply transform px-8 py-2 rounded-md font-bold text-black bg-white hover:scale-103 transition-transform  duration-100 cursor-pointer;
+}
+.frame {
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.75) 50%,
+      rgba(0, 0, 0, 0.4) 100%
+    ),
+    url("./fruits.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.img-box-section{
+  background-image: url("fruit2.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  object-position: center;
+
+}
+
+.img-box-section1{
+  background-image: url("vegetable1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  object-position: center;
+
+}
+
+.img-box-section2{
+  background-image: url("drink1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover;
+  object-position: center;
+
+}
+
+::-webkit-scrollbar {
+  width: 4px; 
+  height: 8px;  
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-green);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0 , 0 , 0 , .1); 
+}
+.body-overflow{
+  overflow: hidden;
+}
+
+.removeShield{
+  display: none;
+}
+.div-bg {
+  background: 
+    linear-gradient(
+      75deg,
+      rgba(0, 0, 0, 0.95) 0%,   
+      rgba(0, 0, 0, 0.65) 50%, 
+      rgba(0, 0, 0, 0.25) 100%  
+    ),
+    url("/plate2.jpg");
+   
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 1rem;
+}
+.product-btn{
+  /* border : 2px solid red; */
+  padding : .25rem 1.8rem;
+  border-radius : .2rem;
+  /* cursor : pointer; */
+  background-color: var(--color-green);
+  color : white;
+  font-size : 16px;
+  letter-spacing : 1px;
+  transition: .2s ease-in-out;
+  /* font-weight : bold; */
+}
+.adding-to-cart-btn{
+  /* border : 2px solid red; */
+  padding : .25rem .5rem;
+  border-radius : .2rem;
+  width : 6rem;
+  /* cursor : pointer; */
+  background-color: var(--color-green);
+  color : white;
+  font-size : 16px;
+  letter-spacing : 1px;
+  transition: .2s ease-in-out;
+  
+  /* font-weight : bold; */
+}
+.product-btn:hover{
+  transform: scale(1.02);
+}
+.specific-cart-btn{
+  
+}
+
+
+
+
+
+

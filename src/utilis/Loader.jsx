@@ -1,0 +1,8 @@
+export default function Loader() {
+  return (
+    <div className="flex items-center justify-center min-h-[60vh] flex-col gap-y-4">
+      <div className="w-12 h-12 border-4 border-green border-t-transparent rounded-full animate-spin"></div>
+      <h2 className="tracking-wider text-xl text-center font-bold">Fetching...</h2>
+    </div>
+  );
+}
