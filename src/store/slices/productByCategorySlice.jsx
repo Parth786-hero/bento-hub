@@ -10,7 +10,7 @@ export const categoryWiseProduct = createAsyncThunk(
       if (!res.ok) {
         return rejectWithValue(data.message || res.statusText);
       }
-
+     
       return data;
     } catch (e) {
       return rejectWithValue(e.message);

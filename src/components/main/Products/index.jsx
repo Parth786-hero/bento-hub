@@ -2,13 +2,14 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllProducts } from "../../../store/slices/productSlice";
 import ProductCard from "./ProductCard";
+import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../../../hooks/useCart";
 import { toast } from "react-toastify";
 export default function Products() {
   const dispatch = useDispatch();
   const { products, loading, error } = useSelector((bag) => bag.products);
   const {error : fault} = useCartContext();
-
+  const navigate= useNavigate();
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
@@ -45,7 +46,7 @@ export default function Products() {
                 {obj.category_name}
               </h2>
               {
-                obj.products.length > 6 && <p className="text-green font-extrabold cursor-pointer tracking-wide text-[1.1rem]">See All</p> 
+                obj.products.length > 6 && <p className="text-green font-extrabold cursor-pointer tracking-wide text-[1.1rem]" onClick={()=>navigate(`/itemspercategory/${obj.category_name}`)}>See All</p> 
               }
               </div>
               {

@@ -1,5 +1,6 @@
+// import { useCartContext } from "../../../hooks/useCart";
 import { useCartContext } from "../../../hooks/useCart";
-export default function AddToCartBtn({ id }) {
+export default function MiniBtn({ id }) {
   const { getItemsPerCard, addToCart, removeFromCart , error} = useCartContext();
   const nums = getItemsPerCard(id);
  
@@ -11,6 +12,7 @@ export default function AddToCartBtn({ id }) {
           onClick={(e) => {
             e.stopPropagation();
             addToCart(id);
+            
             // triggerSnapshot();
           }}
           disabled={error ? true : false}
@@ -20,7 +22,7 @@ export default function AddToCartBtn({ id }) {
         </button>
       ) : (
         <div
-          className="border-green border-1 adding-to-cart-btn font-semibold flex items-center justify-between gap-2 cursor-auto"
+          className="adding-to-cart-btn-2 font-semibold flex items-center justify-between gap-2 cursor-auto"
           onClick={(e) => e.stopPropagation()}
           style={{backgroundColor : error ? "gray" : "var(--color-green)"}}
         >
@@ -33,7 +35,7 @@ export default function AddToCartBtn({ id }) {
               // triggerSnapshot();
             }}
           ></i>
-          <p className="font-extrabold text-[16px]">{nums}</p>
+          <p className="font-extrabold text-[14px]">{nums}</p>
           <i
            disabled={error ? true : false}
           

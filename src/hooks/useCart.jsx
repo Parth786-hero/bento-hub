@@ -1,5 +1,8 @@
 import { useEffect, useRef, useState, useContext, createContext } from "react";
+import { useDispatch } from "react-redux";
+import { setUserCartId } from "../store/slices/loginSlice";
 function useCart() {
+  const dispatch = useDispatch();
   const [items, setItems] = useState(() => {
     const saved = localStorage.getItem("cart");
     return saved ? JSON.parse(saved) : [];
@@ -10,26 +13,29 @@ function useCart() {
   const timeoutRef = useRef(null);
 
   // Fetch cart from backend (hydration)
-  useEffect(() => {
-    async function fetchCart() {
-      setLoading(true);
-      try {
-        const res = await fetch("http://localhost:5000/api/getCart", {
-          credentials: "include",
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.message || "Failed to fetch cart");
-
-        setItems(data.items || []);
-        setHydrated(true);
-        setError(null);
-      } catch (err) {
-        setError(err.message);
-        setHydrated(true); // even if failed, mark hydrated
-      } finally {
-        setLoading(false);
-      }
+  async function fetchCart() {
+    setLoading(true);
+    try {
+      const res = await fetch("http://localhost:5000/api/getCart", {
+        credentials: "include",
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Failed to fetch cart");
+      
+      dispatch(setUserCartId(data.cartId));
+      setItems(data.items || []);
+      setHydrated(true);
+      setError(null);
+      
+    } catch (err) {
+      setError(err.message);
+      setHydrated(true); // even if failed, mark hydrated
+    } finally {
+      setLoading(false);
     }
+  }
+  useEffect(() => {
+   
     fetchCart();
   }, []);
 
@@ -52,7 +58,6 @@ function useCart() {
         });
       } catch (err) {
         setError("failed to save in Cart/Switch on the server");
-        
       }
     }, 1000);
     return () => clearTimeout(timeoutRef.current);
@@ -100,6 +105,7 @@ function useCart() {
     loading,
     error,
     hydrated,
+    fetchCart
   };
 
   return bag;

@@ -44,6 +44,10 @@ const loginSlice = createSlice({
       state.loading = false;
       state.error = null;
     },
+   setUserCartId : (state , action)=>{
+
+    state.user = {...state.user , cartId : action.payload}
+   }
   },
   extraReducers: (builder) => {
     builder
@@ -66,4 +70,4 @@ const loginSlice = createSlice({
 });
 
 export default loginSlice.reducer;
-export const { setAuthenticated , logout} = loginSlice.actions;
+export const { setAuthenticated , logout , setUserCartId} = loginSlice.actions;

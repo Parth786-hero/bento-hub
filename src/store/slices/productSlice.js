@@ -17,7 +17,7 @@ export const fetchAllProducts = createAsyncThunk(
       if (!bag.ok) {
         return rejectWithValue(data.message || "Internal Server Error");
       }
-
+      console.log(data);
       return data;
     } catch (e) {
       return rejectWithValue(e.message);

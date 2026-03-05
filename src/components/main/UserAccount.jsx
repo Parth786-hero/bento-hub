@@ -4,9 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../store/slices/loginSlice";
 import { changeModalStatus } from "../../store/slices/modalSlice";
 import { useCartContext } from "../../hooks/useCart";
-
+import {useNavigate} from 'react-router-dom';
 
 export default function UserAccount() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { clearTheCart } = useCartContext();
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +33,7 @@ export default function UserAccount() {
     
       // Step 4: Clear cart locally
       localStorage.removeItem("cart"); // clears only cart key
-     
+      navigate("/");
     } catch (err) {
       setError("Switch on the server please");
       

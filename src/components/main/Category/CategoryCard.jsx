@@ -23,7 +23,7 @@ export default function CategoryCard({ data }) {
       </div>
 
       <div className="w-full h-[30%] flex items-start justify-center mt-2">
-        <h2 className="text-black w-[80%] text-center font-semibold leading-snug tracking-wide text-[15px]">
+        <h2 className="text-black w-[80%] text-center font-semibold leading-snug tracking-wide text-[14px]">
           {name}
         </h2>
       </div>

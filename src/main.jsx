@@ -39,7 +39,7 @@ function RenderCompo() {
       }
     }
     checkAuth();
-  }, []);
+  }, [dispatch]);
 
   return isAuthenticated ? (
     <CartProvider>

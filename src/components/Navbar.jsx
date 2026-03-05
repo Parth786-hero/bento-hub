@@ -46,7 +46,7 @@ export default function Navbar() {
           )}
           <p
             className={`border rounded-md px-4 py-[.5rem] border-green text-gray-500 cursor-pointer`}
-            style={{ width: isAuthenticated ? "45%" : "60%" }}
+            style={{ width: isAuthenticated ? "40%" : "60%" }}
             onClick={() => {
               isAuthenticated
                 ? navigate("/s")

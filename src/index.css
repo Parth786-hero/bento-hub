@@ -47,8 +47,10 @@
 
 @theme {
   --color-green: #00b894;
+  /* --color-green : red; */
  
-  --color-white: #f5f6fa;
+  /* --color-white: #f5f6fa; */
+  --color-white : white;
 }
 @theme {
   --breakpoint-xs: 500px;
@@ -194,6 +196,18 @@ body {
   transition: .2s ease-in-out;
   
   /* font-weight : bold; */
+}
+.adding-to-cart-btn-2{
+  padding : .15rem .3rem;
+  border-radius : .2rem;
+  width : 5rem;
+  background-color: var(--color-green);
+  color : white;
+  /* font-size : 16px; */
+  letter-spacing : 1px;
+  transition: .2s ease-in-out;
+  /* border : 2px solid red; */
+  height : 2rem;
 }
 .product-btn:hover{
   transform: scale(1.02);
