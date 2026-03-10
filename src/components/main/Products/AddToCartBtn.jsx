@@ -1,8 +1,24 @@
 import { useCartContext } from "../../../hooks/useCart";
+import { useSelector } from "react-redux";
 export default function AddToCartBtn({ id }) {
-  const { getItemsPerCard, addToCart, removeFromCart , error} = useCartContext();
+  const { getItemsPerCard, addToCart, removeFromCart, error } =
+    useCartContext();
   const nums = getItemsPerCard(id);
+  const {products} = useSelector(bag=>bag.products);
+  const allProducts = products.flatMap(ele=>ele.products);
+  const stock = allProducts.find(ele=>ele.id === id)?.stock;
  
+  if (stock === 0) {
+    return (
+      <button
+        className="product-btn-out-of-stock cursor-not-allowed"
+        disabled
+      >
+        {" "}
+        Out of Stock{" "}
+      </button>
+    );
+  }
   return (
     <>
       {nums === 0 ? (
@@ -14,7 +30,7 @@ export default function AddToCartBtn({ id }) {
             // triggerSnapshot();
           }}
           disabled={error ? true : false}
-          style={{backgroundColor : error ? "gray" : "var(--color-green)"}}
+          style={{ backgroundColor: error ? "gray" : "var(--color-green)" }}
         >
           Add
         </button>
@@ -22,11 +38,10 @@ export default function AddToCartBtn({ id }) {
         <div
           className="border-green border-1 adding-to-cart-btn font-semibold flex items-center justify-between gap-2 cursor-auto"
           onClick={(e) => e.stopPropagation()}
-          style={{backgroundColor : error ? "gray" : "var(--color-green)"}}
+          style={{ backgroundColor: error ? "gray" : "var(--color-green)" }}
         >
           <i
-           disabled={error ? true : false}
-          
+            disabled={error ? true : false}
             className="fa-solid fa-minus inline-block cursor-pointer"
             onClick={() => {
               removeFromCart(id);
@@ -35,8 +50,7 @@ export default function AddToCartBtn({ id }) {
           ></i>
           <p className="font-extrabold text-[16px]">{nums}</p>
           <i
-           disabled={error ? true : false}
-          
+            disabled={error ? true : false}
             className="fa-solid fa-plus inline-block cursor-pointer"
             onClick={() => {
               addToCart(id);

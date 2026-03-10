@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../../../hooks/useCart";
 import AddToCartBtn from "./AddToCartBtn";
 export default function ProductCard(props) {
-  const { getItemsPerCard } = useCartContext();
+  const { getItemsPerCard, productLimitError } = useCartContext();
 
   const {
     description,
@@ -19,13 +19,14 @@ export default function ProductCard(props) {
   const navigate = useNavigate();
 
   function shoot(e) {
-    navigate(`/${category_name}/${id}`, { state: { item: props.data } });
+   
+    navigate(`/${name}/${id}`, { state: { item: props.data } });
   }
 
   return (
     <>
       <div
-      key={id}
+        key={id}
         className="w-[12.5rem] h-[17.5rem] rounded-xl shadow-xl cursor-pointer border-gray-900"
         style={{
           backgroundColor: "white",
@@ -33,6 +34,7 @@ export default function ProductCard(props) {
         }}
         onClick={shoot}
       >
+       
         <div className="w-full h-[45%] overflow-hidden p-4 relative">
           {discounted_price > 0 && (
             <div
@@ -43,7 +45,7 @@ export default function ProductCard(props) {
                 justifyContent: "center",
               }}
             >
-              {`${Math.floor(100 - ((discounted_price / price) * 100))}% off`}
+              {`${Math.floor(100 - (discounted_price / price) * 100)}% off`}
             </div>
           )}
           <img
@@ -51,9 +53,12 @@ export default function ProductCard(props) {
             alt="scene description"
             className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
           />
+         
         </div>
+        
 
         <div className="w-full h-[55%] p-3 flex-col flex justify-betwee pb-4">
+      
           <h2 className="font-extrabold tracking-wide">{name}</h2>
           {description.length > 15 ? (
             <p className="text-[14px] tracking-wide leading-snug my-1">
@@ -65,7 +70,13 @@ export default function ProductCard(props) {
             </p>
           )}
           <p className="text-[12px] tracking-wide text-gray-500">{quantity}</p>
-          <div className="flex items-center justify-between self-end w-full h-[2.7rem] mt-3 overflow-hidden">
+          <div className="relative flex items-center justify-between self-end w-full h-[2.7rem] mt-3">
+            {productLimitError?.id === id && (
+              <p className="text-[11px] text-red-600 absolute right-0 top-[-1rem] font-bold tracking-wide animate-fade">
+                {productLimitError.message}
+              </p>
+            )}
+
             <div>
               {discounted_price > 0 && (
                 <p className="font-bold text-[13px] ">₹{discounted_price}</p>
@@ -78,7 +89,7 @@ export default function ProductCard(props) {
                 ₹{price}
               </p>
             </div>
-          <AddToCartBtn id={id} />
+            <AddToCartBtn id={id} />
           </div>
         </div>
       </div>

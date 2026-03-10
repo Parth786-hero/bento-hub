@@ -30,6 +30,7 @@ const loginSlice = createSlice({
     error: null,
     success: null,
     user: null,
+    showWelcome : false
   },
   reducers: {
     setAuthenticated: (state, action) => {
@@ -47,6 +48,9 @@ const loginSlice = createSlice({
    setUserCartId : (state , action)=>{
 
     state.user = {...state.user , cartId : action.payload}
+   },
+   setShowWelcomes : (state , action)=>{
+    state.showWelcome = action.payload;
    }
   },
   extraReducers: (builder) => {
@@ -59,6 +63,7 @@ const loginSlice = createSlice({
        
         state.loading = false;
         state.isAuthenticated = true;
+        state.showWelcome = true;
         state.success = "Login successful";
         state.user = action.payload.user || null;
       })
@@ -70,4 +75,4 @@ const loginSlice = createSlice({
 });
 
 export default loginSlice.reducer;
-export const { setAuthenticated , logout , setUserCartId} = loginSlice.actions;
+export const { setAuthenticated , logout , setUserCartId , setShowWelcomes} = loginSlice.actions;

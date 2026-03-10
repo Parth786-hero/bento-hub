@@ -25,7 +25,6 @@ export default function Products() {
   }
   if(fault){
    toast.error(fault);
-   
   }
   if (error)
     return (

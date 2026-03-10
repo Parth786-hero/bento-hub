@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useContext, createContext } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUserCartId } from "../store/slices/loginSlice";
 function useCart() {
   const dispatch = useDispatch();
@@ -11,8 +11,9 @@ function useCart() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const timeoutRef = useRef(null);
-
-  // Fetch cart from backend (hydration)
+  const {products} = useSelector(bag=>bag.products);
+  const allProducts = products.flatMap(obj=>obj.products);
+  const [productLimitError , setProductLimitError] = useState(null);
   async function fetchCart() {
     setLoading(true);
     try {
@@ -68,15 +69,43 @@ function useCart() {
     addToCart(id) {
       setItems((prev) => {
         const obj = prev.find((ele) => ele.id === id);
+        const product = allProducts.find(temp => temp.id === id);
+    
+        if (!product) {
+          setProductLimitError({ id, message: "Product not found." });
+          setTimeout(() => setProductLimitError(null), 1000);
+          return prev;
+        }
+    
         if (obj) {
-          return prev.map((ele) =>
-            ele.id === id ? { ...ele, count: ele.count + 1 } : ele
-          );
+          // Already in cart → check stock before incrementing
+          if (obj.count + 1 <= product.stock) {
+            // clear any previous error for this product
+            setProductLimitError(null);
+            return prev.map((ele) =>
+              ele.id === id ? { ...ele, count: ele.count + 1 } : ele
+            );
+          } else {
+            setProductLimitError({ id, message: "Limit exceeded" });
+            setTimeout(() => setProductLimitError(null), 1000);
+            return prev;
+          }
         } else {
-          return [...prev, { id, count: 1 }];
+          // First time adding → ensure stock > 0
+          if (product.stock > 0) {
+            setProductLimitError(null);
+            return [...prev, { id, count: 1 }];
+          } else {
+            setProductLimitError({ id, message: "Out of stock" });
+            setTimeout(() => setProductLimitError(null), 1000);
+            return prev;
+          }
         }
       });
-    },
+    }
+    
+    
+    ,
     removeFromCart(id) {
       setItems((prev) => {
         const obj = prev.find((ele) => ele.id === id);
@@ -89,6 +118,7 @@ function useCart() {
           return prev.filter((ele) => ele.id !== id);
         }
       });
+      setProductLimitError(null);
     },
     clearTheCart() {
       setItems([]);
@@ -105,7 +135,8 @@ function useCart() {
     loading,
     error,
     hydrated,
-    fetchCart
+    fetchCart,
+    productLimitError
   };
 
   return bag;

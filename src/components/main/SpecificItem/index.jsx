@@ -5,7 +5,9 @@ import { useEffect } from "react";
 import ProductCard from "../Products/ProductCard";
 import { categoryWiseProduct } from "../../../store/slices/productByCategorySlice";
 import AddToCartBtn from "../Products/AddToCartBtn";
+import { useCartContext } from "../../../hooks/useCart";
 export default function SpecificItem() {
+  const {productLimitError} = useCartContext();
   const { products, loading, error } = useSelector(
     (bag) => bag.productsByCategory
   );
@@ -76,7 +78,12 @@ export default function SpecificItem() {
               <h2 className="text-3xl font-bold tracking-wider">{name}</h2>
               <p className="text-xl my-2">{description}.</p>
               <p className="text-gray-500">{quantity}</p>
-              <div className="flex items-center justify-between">
+              <div className="relative flex items-center justify-between">
+              {productLimitError?.id === id && (
+              <p className="text-[11px] text-red-600 absolute right-0 top-[-.7rem] font-bold tracking-wide animate-fade">
+                {productLimitError.message}
+              </p>
+            )}
                 <div>
                   <div className="flex items-center gap-3">
                     {discounted_price > 0 && (

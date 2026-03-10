@@ -1,13 +1,14 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useCartContext } from "../../../hooks/useCart";
 import { useSelector } from "react-redux";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import MiniCard from "./MiniCard";
 import confetti from "canvas-confetti";
 import Bill from "./Bill";
+import { calculateTotalPrice, calculateGrandTotal } from "../../../utilis/priceUtils";
+
 export default function BottomSheet({ isOpen, onClose }) {
-  const { getBag, getTotalNumbersOfItems, clearTheCart, fetchCart } =
-    useCartContext();
+  const { getBag, clearTheCart, fetchCart } = useCartContext();
   const { products } = useSelector((bag) => bag.products);
   const { user } = useSelector((bag) => bag.login);
 
@@ -20,18 +21,24 @@ export default function BottomSheet({ isOpen, onClose }) {
   }, [products]);
 
   const cartItems = getBag();
-  const val = getTotalNumbersOfItems();
 
-  const totalPrice = useMemo(() => {
-    return cartItems.reduce((acc, curr) => {
-      const obj = listOfAllProducts.find((ele) => ele.id === curr.id);
-      if (!obj) return acc;
-      let amount =
-        curr.count *
-        (obj.discounted_price > 0 ? obj.discounted_price : obj.price);
-      return amount + acc;
-    }, 0);
-  }, [cartItems, listOfAllProducts]);
+  const totalPrice = useMemo(
+    () => calculateTotalPrice(cartItems, listOfAllProducts),
+    [cartItems, listOfAllProducts]
+  );
+  const grandTotal = calculateGrandTotal(totalPrice);
+
+  // Prevent background scroll when sheet is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
 
   async function handleCheckout() {
     try {
@@ -47,19 +54,8 @@ export default function BottomSheet({ isOpen, onClose }) {
       });
       const data = await res.json();
       if (res.ok) {
-        // 🎉 Confetti burst
-        confetti({
-          particleCount: 550,
-          spread: 200,
-          origin: { y: 0.6 },
-        });
-
-        // Show success overlay
+        confetti({ particleCount: 550, spread: 200, origin: { y: 0.6 } });
         setSuccess(true);
-
-        // Reset cart state
-
-        // Close BottomSheet after a short delay
         setTimeout(() => {
           clearTheCart();
           localStorage.removeItem("cart");
@@ -83,7 +79,7 @@ export default function BottomSheet({ isOpen, onClose }) {
         <>
           {/* Background overlay */}
           <motion.div
-            className="fixed inset-0 z-40"
+            className="fixed inset-0 z-30"
             style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}
             onClick={onClose}
             initial={{ opacity: 0 }}
@@ -96,13 +92,12 @@ export default function BottomSheet({ isOpen, onClose }) {
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            // style={{backgroundColor : "white!important"}}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed bg-white top-0 right-0 h-full shadow-lg z-50 w-[40%] max-w-sm flex flex-col"
+            className="bg-blue-50 fixed top-0 right-0 h-full shadow-xl z-40 w-[27%] flex flex-col"
           >
             {/* Header */}
-            <div className="sticky top-0 bg-white p-5">
-              <div className="flex justify-between items-center border-b border-gray-600 pb-2">
+            <div className="sticky top-0 bg-white px-5 pt-5">
+              <div className="flex justify-between items-center pb-2">
                 <h2 className="text-xl font-extrabold">My Cart</h2>
                 <button
                   onClick={onClose}
@@ -113,27 +108,42 @@ export default function BottomSheet({ isOpen, onClose }) {
               </div>
             </div>
 
-            {/* Cart items */}
-            <ul className="space-y-2 p-5 flex-1 overflow-y-auto bg-white">
-              {cartItems.map((item) => {
-                const product = listOfAllProducts.find((p) => p.id === item.id);
-                return (
-                  <MiniCard key={product.id} data={product} onClose={onClose} />
-                );
-              })}
-             <Bill price={totalPrice}/>
-            </ul>
+            {/* Scrollable content */}
+            <div className="flex-1 overflow-y-auto px-3 z-410">
+              <ul className="rounded-2xl p-3 bg-white shadow-xl my-3">
+                <div className="flex items-center gap-3 pb-3">
+                  <i className="fa-solid fa-alarm-clock text-[1.6rem] text-green"></i>
+                  <div>
+                    <h2 className="font-extrabold tracking-wide">
+                      {
+                        `${totalPrice < 100 ? "Free" : ""} Delivery in 10 minutes`
+                      }
+                    </h2>
+                    <p className="text-[12px] text-gray-600 tracking-wide">
+                      Shipment of {cartItems.reduce((a , b)=>{return a+ b.count} , 0)} items
+                    </p>
+                  </div>
+                </div>
+                {cartItems.map((item) => {
+                  const product = listOfAllProducts.find((p) => p.id === item.id);
+                  return (
+                    <MiniCard key={product.id} data={product} onClose={onClose} />
+                  );
+                })}
+              </ul>
+              <Bill price={totalPrice} />
+            </div>
 
             {/* Checkout bar */}
-            <div className="flex items-center justify-between font-bold h-[7rem] bg-green text-white px-5 rounded-t-2xl">
+            <div className="flex items-center justify-between font-bold h-[6rem] bg-green text-white px-5 rounded-t-2xl">
               <div className="flex flex-col items-start justify-start">
                 <p className="font-extrabold">
                   {new Intl.NumberFormat("en-IN", {
                     style: "currency",
                     currency: "INR",
-                  }).format(totalPrice + 11 + (totalPrice < 100 ? 30 : 0))}
+                  }).format(grandTotal)}
                 </p>
-                <p className="font-normal text-[14px] tracking-wider">Total</p>
+                <p className="font-normal text-[12px] tracking-wider">Total</p>
               </div>
               {loading ? (
                 <p className="border-2 px-5 py-2 rounded-xl shadow-xl">
@@ -146,8 +156,7 @@ export default function BottomSheet({ isOpen, onClose }) {
               ) : (
                 <p
                   onClick={handleCheckout}
-                  className="font-extrabold tracking-wider cursor-pointer border-2 px-5 py-2 rounded-xl shadow-xl 
-                             transform transition duration-300 ease-in-out hover:scale-105"
+                  className="font-bold tracking-wider cursor-pointer border-2 px-5 py-2 rounded-xl shadow-xl transform transition duration-300 ease-in-out hover:scale-105"
                 >
                   Checkout
                 </p>
@@ -173,9 +182,7 @@ export default function BottomSheet({ isOpen, onClose }) {
                   <p className="text-2xl font-bold text-green">
                     Order Placed Successfully!
                   </p>
-                  <p className="text-gray-600 mt-2">
-                    Thank you for shopping 🎉
-                  </p>
+                  <p className="text-gray-600 mt-2">Thank you for shopping 🎉</p>
                 </motion.div>
               </motion.div>
             )}

@@ -4,7 +4,7 @@ import MiniBtn from "./MiniBtn";
 // import AddToCartBtn from "../Products/AddToCartBtn";
 import { useCartContext } from "../../../hooks/useCart";
 export default function MiniCard(props) {
-  const { getItemsPerCard } = useCartContext();
+  const { getItemsPerCard , productLimitError} = useCartContext();
 
   const {
     description,
@@ -28,14 +28,14 @@ export default function MiniCard(props) {
     <>
       <div
       key={id}
-        className="w-full flex items-center justify-between gap-x-3 h-[6rem] overflow-hidden pb-2 border-b-1 border-gray-200 mb-2"
+        className="w-full flex items-center justify-between gap-x-3 h-[6rem] overflow-hidden pb-3 border-b-1 border-gray-200 mb-1"
         style={{
           // backgroundColor: "white",
           // border: "1px solid rgba(0 , 0 , 0 , .2)",
         }}
         // onClick={shoot}
       >
-        <div className="overflow-hidden relative border border-gray-300 w-[4.5rem] h-[4.5rem] flex items-center justify-center rounded-xl">
+        <div className="overflow-hidden relative border border-gray-300 w-[4.5rem] h-[4rem] flex items-center justify-center rounded-xl">
           {/* {discounted_price > 0 && (
             <div
               className="bg-green text-white w-[2.2rem] h-[2.2rem] rounded-b-full text-[11px] text-center p-2 font-extrabold tracking-wide absolute right-2 top-0 leading-3"
@@ -56,10 +56,15 @@ export default function MiniCard(props) {
         </div>
 
         <div className="w-full p-1 flex-col flex justify-between h-full">
-          <h2 className="text-[14px] tracking-wide">{name}</h2>
+          <h2 className="text-[13px] tracking-wide">{name}</h2>
          
           <p className="text-[12px] tracking-wide text-gray-500">{quantity}</p>
-          <div className="flex items-center justify-between self-end w-full overflow-hidden">
+          <div className="relative flex items-center justify-between self-end w-full">
+          {productLimitError?.id === id && (
+              <p className="text-[11px] text-red-600 absolute right-0 top-[-1.1rem] font-bold tracking-wide animate-fade">
+                {productLimitError.message}
+              </p>
+            )}
             <div className="flex items-start justify-start gap-2">
               {discounted_price > 0 && (
                 <p className="font-bold text-[13px] ">₹{discounted_price}</p>

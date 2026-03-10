@@ -57,7 +57,7 @@ root.render(
         <Routes>
           <Route path="/*" element={<RenderCompo />} />
         </Routes>
-        <ToastContainer />
+        <ToastContainer position="top-right" autoClose={700} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       </Provider>
     </BrowserRouter>
   </>
