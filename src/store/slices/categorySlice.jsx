@@ -48,6 +48,7 @@ const categorySlice = createSlice({
     data: [],
     error: null,
     loading: false,
+    cats : []
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -61,6 +62,7 @@ const categorySlice = createSlice({
         state.loading = false;
         state.error = null;
         state.data = action.payload.categories || action.payload;
+        
       })
       .addCase(fetchCategory.rejected, (state, action) => {
         state.loading = false;

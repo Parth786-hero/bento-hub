@@ -4,13 +4,14 @@ const modalSlice = createSlice({
     initialState : {
         show : false,
         mode : null , 
-       
+       payload : null
     },
     reducers : {
         changeModalStatus(state , action){
-            const {show , mode , formData , setFormData} = action.payload;
+            const {show , mode } = action.payload;
             state.show = show;
             state.mode = mode;
+            state.payload = action.payload.payload || null
             
         }
     }

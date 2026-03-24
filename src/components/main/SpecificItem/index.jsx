@@ -48,7 +48,7 @@ export default function SpecificItem() {
   return (
     <>
       <div className="mt-30 min-h-screen py-5">
-        <div className="flex justify-around h-[18rem] border-b-1 border-gray-400">
+        <div className="flex justify-around h-[19.5rem] border-b-1 border-gray-400">
           <div className="relative w-[45%] flex items-center justify-center border-r-1 border-gray-400 p-4">
             {
               discounted_price > 0 && <div className="w-[4.7rem] h-[3rem] text-center rounded-l-full bg-green text-white font-extrabold text-[14px] absolute right-0 top-0 tracking-wider leading-4.5" style={{display : "flex" , alignItems : "center" , justifyContent : "center"}}>{`${Math.floor(100 - ((discounted_price / price) * 100))}% off`}</div>
@@ -107,7 +107,7 @@ export default function SpecificItem() {
                 <AddToCartBtn id={id}/>
               </div>
               <ol
-                className="mt-8 text-[12px] font-extrabold tracking-wide leading-relaxed list-decimal list-inside mb-4"
+                className="mt-5 text-[12px] font-extrabold tracking-wide leading-relaxed list-decimal list-inside mb-4"
                 type="1"
               >
                 <li>
@@ -118,10 +118,10 @@ export default function SpecificItem() {
                   Best price destination with offers directly from the
                   manufacturers.
                 </li>
-                <li>
+                {description.length <= 80 && <li>
                   Choose from 30,000+ products across food, personal care,
                   household & other categories.
-                </li>
+                </li>}
               </ol>
             </div>
           </div>

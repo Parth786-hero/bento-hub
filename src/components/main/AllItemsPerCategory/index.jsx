@@ -10,12 +10,14 @@ export default function AllItemsPerCategory() {
   const location = useLocation();
   const dispatch = useDispatch();
   const bag = decodeURIComponent(location.pathname).split("/");
-const {products , loading , error} = useSelector(bag=>bag.products);
-const targetProducts = products.find(ele=>ele["category_name"] === bag[bag.length-1]);
-console.log(targetProducts);
-useEffect(()=>{
+  const { products, loading, error } = useSelector((bag) => bag.products);
+  const targetProducts = products.find(
+    (ele) => ele["category_name"] === bag[bag.length - 1]
+  );
+ 
+  useEffect(() => {
     dispatch(fetchAllProducts());
-} , [dispatch]);
+  }, [dispatch]);
 
   return (
     <>
@@ -28,25 +30,24 @@ useEffect(()=>{
             {bag[bag.length - 1]}
           </h2>
           <div className="h-full relative grid grid-cols-6 p-4 gap-y-4 pb-150 place-items-center gap-7">
-  {loading && (
-    <div className="absolute top-[35%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-      <Loader />
-    </div>
-  )}
-   {error && (
-    <div className="absolute top-[35%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-red-500 font-bold text-[2rem] tracking-wider">
-      Error : {error}
-    </div>
-   
-  )}
+            {loading && (
+              <div className="absolute top-[35%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <Loader />
+              </div>
+            )}
+            {error && (
+              <div className="absolute top-[35%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-red-500 font-bold text-[2rem] tracking-wider">
+                Error : {error}
+              </div>
+            )}
 
-
-  {!error && !loading && targetProducts.products &&
-    targetProducts.products.map((obj, id) => {
-      return <ProductCard key={id} data={obj} />;
-    })}
-</div>
-
+            {!error &&
+              !loading &&
+              targetProducts.products &&
+              targetProducts.products.map((obj, id) => {
+                return <ProductCard key={id} data={obj} />;
+              })}
+          </div>
         </div>
       </>
     </>

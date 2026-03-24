@@ -49,8 +49,9 @@
   --color-green: #00b894;
   /* --color-green : red; */
  
-  /* --color-white: #f5f6fa; */
-  --color-white : white;
+  --color-white: #f5f6fa;
+  --color-white-pure : white;
+  /* --color-white : white; */
 }
 @theme {
   --breakpoint-xs: 500px;
@@ -76,6 +77,9 @@ body {
 }
 .cart-btn {
   @apply transform w-[7.8rem] h-[3.6rem] rounded-md font-semibold text-white bg-gray-400 hover:scale-103 transition-transform  duration-100 cursor-pointer;
+}
+.cart-btn-1 {
+  @apply transform w-[7.8rem] h-[3.6rem] rounded-md font-semibold text-white hover:scale-103 transition-transform  duration-100 cursor-pointer;
 }
 .items-btn{
   @apply transform bg-green w-[7.8rem] h-[3.6rem] rounded-md font-semibold text-white hover:scale-103 transition-transform  duration-100 cursor-pointer;
@@ -233,6 +237,22 @@ body {
 .animate-fade {
   animation: fadeOut 1s ease forwards;
 }
+/* Add this to your global CSS file */
+.custom-checkbox:checked::after {
+  content: "✔";              /* Unicode tick */
+  color: white;              /* White tick */
+  font-size: 12px;           /* Adjust size */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top : .05rem
+}
+
+
 
 
 

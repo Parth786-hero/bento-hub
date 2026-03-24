@@ -1,8 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../../../hooks/useCart";
 import AddToCartBtn from "./AddToCartBtn";
+import { useDispatch , useSelector} from "react-redux";
+import { changeModalStatus } from "../../../store/slices/modalSlice";
 export default function ProductCard(props) {
+  const dispatch = useDispatch();
   const { getItemsPerCard, productLimitError } = useCartContext();
+const {user} = useSelector(bag=>bag.login);
 
   const {
     description,
@@ -19,8 +23,13 @@ export default function ProductCard(props) {
   const navigate = useNavigate();
 
   function shoot(e) {
-   
     navigate(`/${name}/${id}`, { state: { item: props.data } });
+  }
+
+  function handleEditFunc(e) {
+    e.stopPropagation();
+    dispatch(changeModalStatus({ show: true, mode: "UPDATE_PRODUCT", payload : props.data}));
+    // if (props.onUpdated) props.onUpdated();
   }
 
   return (
@@ -34,8 +43,14 @@ export default function ProductCard(props) {
         }}
         onClick={shoot}
       >
-       
         <div className="w-full h-[45%] overflow-hidden p-4 relative">
+          {
+            user.email === "kapoorparth096@gmail.com" && <i
+            className="absolute top-1 left-2 fa-solid fa-pencil grid text-center items-center justify-center block shadow-xl rounded-full text-md bg-gray-200 hover:scale-110"
+            onClick={handleEditFunc}
+            style={{ padding: ".7rem", width: "2.5rem", height: "2.5rem" }}
+          ></i>
+          }
           {discounted_price > 0 && (
             <div
               className="bg-green text-white w-[2.2rem] h-[2.2rem] rounded-b-full text-[11px] text-center p-2 font-extrabold tracking-wide absolute right-2 top-0 leading-3"
@@ -51,14 +66,11 @@ export default function ProductCard(props) {
           <img
             src={`/${image_url}`}
             alt="scene description"
-            className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
+            className="w-full h-full object-contain transition-transform duration-300"
           />
-         
         </div>
-        
 
         <div className="w-full h-[55%] p-3 flex-col flex justify-betwee pb-4">
-      
           <h2 className="font-extrabold tracking-wide">{name}</h2>
           {description.length > 15 ? (
             <p className="text-[14px] tracking-wide leading-snug my-1">

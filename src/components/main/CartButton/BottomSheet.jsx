@@ -1,13 +1,15 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useCartContext } from "../../../hooks/useCart";
-import { useSelector } from "react-redux";
+import { useSelector , useDispatch} from "react-redux";
 import { useMemo, useState, useEffect } from "react";
 import MiniCard from "./MiniCard";
 import confetti from "canvas-confetti";
 import Bill from "./Bill";
+import { fetchAllProducts } from "../../../store/slices/productSlice";
 import { calculateTotalPrice, calculateGrandTotal } from "../../../utilis/priceUtils";
 
-export default function BottomSheet({ isOpen, onClose }) {
+export default function BottomSheet({ isOpen, onClose , donation , setDonation}) {
+  const dispatch = useDispatch();
   const { getBag, clearTheCart, fetchCart } = useCartContext();
   const { products } = useSelector((bag) => bag.products);
   const { user } = useSelector((bag) => bag.login);
@@ -26,7 +28,8 @@ export default function BottomSheet({ isOpen, onClose }) {
     () => calculateTotalPrice(cartItems, listOfAllProducts),
     [cartItems, listOfAllProducts]
   );
-  const grandTotal = calculateGrandTotal(totalPrice);
+  const basePrice = totalPrice + (donation ? 1 : 0);
+  const grandTotal = calculateGrandTotal(basePrice);
 
   // Prevent background scroll when sheet is open
   useEffect(() => {
@@ -50,6 +53,7 @@ export default function BottomSheet({ isOpen, onClose }) {
         body: JSON.stringify({
           cart_id: user.cartId,
           status: "completed",
+          donation : donation
         }),
       });
       const data = await res.json();
@@ -59,6 +63,9 @@ export default function BottomSheet({ isOpen, onClose }) {
         setTimeout(() => {
           clearTheCart();
           localStorage.removeItem("cart");
+          setDonation(false);
+          localStorage.removeItem("donation");
+          dispatch(fetchAllProducts());
           fetchCart();
           setSuccess(false);
           onClose();
@@ -93,10 +100,10 @@ export default function BottomSheet({ isOpen, onClose }) {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="bg-blue-50 fixed top-0 right-0 h-full shadow-xl z-40 w-[27%] flex flex-col"
+            className="bg-blue-50 fixed top-0 right-0 h-full shadow-xl z-40 w-[30%] flex flex-col"
           >
             {/* Header */}
-            <div className="sticky top-0 bg-white px-5 pt-5">
+            <div className="sticky top-0 bg-white-pure px-5 pt-5">
               <div className="flex justify-between items-center pb-2">
                 <h2 className="text-xl font-extrabold">My Cart</h2>
                 <button
@@ -110,7 +117,7 @@ export default function BottomSheet({ isOpen, onClose }) {
 
             {/* Scrollable content */}
             <div className="flex-1 overflow-y-auto px-3 z-410">
-              <ul className="rounded-2xl p-3 bg-white shadow-xl my-3">
+              <ul className="rounded-2xl p-3 bg-white-pure shadow-xl my-3">
                 <div className="flex items-center gap-3 pb-3">
                   <i className="fa-solid fa-alarm-clock text-[1.6rem] text-green"></i>
                   <div>
@@ -131,9 +138,9 @@ export default function BottomSheet({ isOpen, onClose }) {
                   );
                 })}
               </ul>
-              <Bill price={totalPrice} />
+              <Bill price={totalPrice} donation={donation} setDonation={setDonation} />
             </div>
-
+               
             {/* Checkout bar */}
             <div className="flex items-center justify-between font-bold h-[6rem] bg-green text-white px-5 rounded-t-2xl">
               <div className="flex flex-col items-start justify-start">
@@ -177,7 +184,7 @@ export default function BottomSheet({ isOpen, onClose }) {
                   initial={{ scale: 0.8 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                  className="bg-white p-8 rounded-xl shadow-xl text-center"
+                  className="bg-white-pure p-8 rounded-xl shadow-xl text-center"
                 >
                   <p className="text-2xl font-bold text-green">
                     Order Placed Successfully!

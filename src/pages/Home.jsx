@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Section from "../components/Section";
 import { useSelector, useDispatch } from "react-redux";
 import { changeModalStatus } from "../store/slices/modalSlice";
-import ModalComponent from "../components/ModalCompo";
+
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 export default function Home() {
@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <>
       <div className="overflow-hidden relative bg-thunk">
-        {modalStatus && <ModalComponent />}
+       
         {scrolled && (
           <div
             className="z-11 fixed bottom-6 left-1/2 -translate-x-1/2 w-[2.5rem] h-[2.5rem] rounded-full bg-green text-white flex items-center justify-center cursor-pointer shadow-lg transition-opacity duration-300"

@@ -1,14 +1,25 @@
 import { motion } from "framer-motion";
 import { useCartContext } from "../../../hooks/useCart";
-import { useSelector } from "react-redux";
+import { useSelector , useDispatch} from "react-redux";
 import { useMemo } from "react";
 import BottomSheet from "./BottomSheet";
 import { useState, useEffect } from "react";
+import { changeModalStatus } from "../../../store/slices/modalSlice";
 export default function CartButton() {
+  const dispatch = useDispatch();
+  const [donation, setDonation] = useState(() => {
+    // read from localStorage on first render
+    return localStorage.getItem("donation") === "true";
+  });
+  
+  // whenever donation changes, save it
+ 
   const [isOpen, setIsOpen] = useState(false);
   const { getTotalNumbersOfItems, getBag } = useCartContext();
   const { products, error, loading } = useSelector((bag) => bag.products);
-
+  const {user} = useSelector(bag=>bag.login);
+  
+  
   const listOfAllProducts = useMemo(() => {
     return products.flatMap((obj) => obj.products);
   }, [products]);
@@ -37,10 +48,33 @@ export default function CartButton() {
       return amount + acc;
     }, 0);
   }, [cartItems, listOfAllProducts]);
+  
 
-  if (loading) {
-    return (
-      <motion.button
+  useEffect(() => {
+    localStorage.setItem("donation", donation);
+  }, [donation]);
+  return (
+    <>
+      {user.email === "kapoorparth096@gmail.com" ? <motion.button
+        // disabled
+        className="cart-btn-1 rounded-md font-semibold shadow-md flex items-center justify-center gap-2 bg-green"
+        whileHover={{
+          x: [0, -10, 10, -10, 10, 0], // small horizontal jitter
+          transition: { duration: 0.4 },
+        }}
+        whileTap={{
+          scale: 0.95,
+          x: [0, -11, 11, -11, 11, 0], // stronger jitter on click
+          transition: { duration: 0.3 },
+        }}
+        onClick={() =>
+          dispatch(changeModalStatus({ show: true, mode: "ADD_PRODUCT" }))
+        
+        }
+      >
+        
+        <span className="font-extrabold text-[1rem]">Add Product</span>
+      </motion.button>: loading ?  <motion.button
         disabled
         className="cart-btn rounded-md font-semibold shadow-md flex items-center justify-center gap-2"
         whileHover={{
@@ -55,13 +89,7 @@ export default function CartButton() {
       >
         <i className="text-[1rem] fa-solid fa-cart-shopping"></i>
         <span className="font-extrabold text-[1rem]">My Cart</span>
-      </motion.button>
-    );
-  }
-
-  return (
-    <>
-      {val > 0 ? (
+      </motion.button>: val > 0 ? (
         <>
           <motion.button
             onClick={() => setIsOpen(true)}
@@ -88,7 +116,12 @@ export default function CartButton() {
               </p>
             </div>
           </motion.button>
-          <BottomSheet isOpen={isOpen} onClose={() => setIsOpen(false)} />
+          <BottomSheet
+            isOpen={isOpen}
+            onClose={() => setIsOpen(false)}
+            donation={donation}
+            setDonation={setDonation}
+          />
         </>
       ) : (
         <motion.button

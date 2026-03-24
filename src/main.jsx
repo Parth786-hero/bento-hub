@@ -13,10 +13,13 @@ import { changeModalStatus } from "./store/slices/modalSlice";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./utilis/ScrollToTop";
 import { CartProvider } from "./hooks/useCart";
+import ModalComponent from "./components/ModalCompo";
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 function RenderCompo() {
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((bag) => bag.login);
+  const modalStatus = useSelector((bag) => bag.modal).show;
+
   useEffect(() => {
     async function checkAuth() {
       try {
@@ -41,12 +44,18 @@ function RenderCompo() {
     checkAuth();
   }, [dispatch]);
 
-  return isAuthenticated ? (
-    <CartProvider>
-      <Main />
-    </CartProvider>
-  ) : (
-    <Home />
+  return (
+    <>
+      {isAuthenticated ? (
+        <CartProvider>
+          <Main />
+        </CartProvider>
+      ) : (
+        <Home />
+      )}
+
+  {modalStatus && <ModalComponent />}
+    </>
   );
 }
 root.render(
@@ -57,7 +66,17 @@ root.render(
         <Routes>
           <Route path="/*" element={<RenderCompo />} />
         </Routes>
-        <ToastContainer position="top-right" autoClose={700} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
+        <ToastContainer
+          position="top-right"
+          autoClose={700}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </Provider>
     </BrowserRouter>
   </>

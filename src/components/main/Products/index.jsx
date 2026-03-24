@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 export default function Products() {
   const dispatch = useDispatch();
   const { products, loading, error } = useSelector((bag) => bag.products);
+ 
   const {error : fault} = useCartContext();
   const navigate= useNavigate();
   useEffect(() => {
@@ -39,7 +40,7 @@ export default function Products() {
       <div className="mt-2">
         {products.map((obj , id) => {
           return (
-            <div key={id} className="mb-12">
+            <div key={id} className="mb-8">
               <div className="flex items-center justify-between">
               <h2 className="font-bold text-3xl tracking-wide leading-snug mb-2">
                 {obj.category_name}

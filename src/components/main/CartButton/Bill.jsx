@@ -1,7 +1,11 @@
 import { calculateGrandTotal } from "../../../utilis/priceUtils";
 
-export default function Bill({ price }) {
-  const grandTotal = calculateGrandTotal(price);
+import Donation from "./Donation";
+export default function Bill({ price, donation, setDonation }) {
+  
+
+  const basePrice = price + (donation ? 1 : 0);
+  const grandTotal = calculateGrandTotal(basePrice);
 
   const obj = [
     {
@@ -11,6 +15,7 @@ export default function Bill({ price }) {
       price: price.toFixed(2),
       bold: false,
       free: false,
+
     },
     {
       id: 2,
@@ -19,6 +24,7 @@ export default function Bill({ price }) {
       price: 30,
       bold: false,
       free: price >= 100,
+
     },
     {
       id: 3,
@@ -27,7 +33,20 @@ export default function Bill({ price }) {
       price: 11,
       bold: false,
       free: false,
+
     },
+    ...(donation
+      ? [
+          {
+            id: 5,
+            iconOne: "fa-solid fa-hand-holding-dollar",
+            text: "Donation Amount",
+            price: Number(1),
+            bold: false,
+            free: false,
+          },
+        ]
+      : []),
     {
       id: 4,
       iconOne: null,
@@ -35,13 +54,15 @@ export default function Bill({ price }) {
       price: grandTotal.toFixed(2),
       bold: true,
       free: false,
+
     },
+    
   ];
 
   return (
     <>
       {/* Bill Details */}
-      <div className="mt-4 shadow-xl rounded-xl p-3 bg-white">
+      <div className="mt-4 shadow-xl rounded-xl p-3 bg-white-pure">
         <h1 className="font-extrabold mb-2 text-sm">Bill Details</h1>
         <div>
           {obj.map((ele) => (
@@ -74,13 +95,14 @@ export default function Bill({ price }) {
               )}
             </div>
           ))}
+
         </div>
       </div>
-
+      <Donation checked={donation} onToggle={setDonation} />     
       {/* Cancellation Policy */}
-      <div className="mt-4 shadow-xl rounded-xl p-3 bg-white mb-4">
-        <h1 className="font-extrabold mb-2 text-sm">Cancellation Policy</h1>
-        <p className="text-gray-600 text-xs tracking-wide leading-relaxed">
+      <div className="mt-4 shadow-xl rounded-xl p-3 bg-white-pure mb-4">
+        <h1 className="font-extrabold mb-1 text-sm">Cancellation Policy</h1>
+        <p className="text-gray-600 text-xs leading-relaxed">
           Orders cannot be cancelled once packed for delivery. In case of
           unexpected delays, a refund will be provided, if applicable.
         </p>

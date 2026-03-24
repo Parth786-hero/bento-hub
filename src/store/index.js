@@ -6,7 +6,7 @@ import categorySlice from "./slices/categorySlice";
 import productSlice from "./slices/productSlice";
 import productByCategorySlice from "./slices/productByCategorySlice";
 import searchProductsSlice from "./slices/searchProductsSlice";
-
+import subcategorySlice from "./slices/subcategorySlice";
 
 const store = configureStore({
     name : "myStore",
@@ -18,7 +18,7 @@ const store = configureStore({
         products : productSlice,
         productsByCategory : productByCategorySlice,
         searchProducts : searchProductsSlice,
-       
+        subCategory : subcategorySlice
     }
 });
 
