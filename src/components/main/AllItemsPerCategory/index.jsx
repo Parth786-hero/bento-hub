@@ -43,8 +43,8 @@ export default function AllItemsPerCategory() {
 
             {!error &&
               !loading &&
-              targetProducts.products &&
-              targetProducts.products.map((obj, id) => {
+              targetProducts?.products &&
+              targetProducts?.products.map((obj, id) => {
                 return <ProductCard key={id} data={obj} />;
               })}
           </div>
