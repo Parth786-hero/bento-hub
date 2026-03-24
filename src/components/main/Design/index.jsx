@@ -3,12 +3,12 @@ import CatDesign from "./CatDesign";
 import Loader from "../../../utilis/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllSubCategoryById } from "../../../store/slices/categorySlice";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useState } from "react";
 import ProductCard from "../Products/ProductCard";
 export default function Design() {
   const location = useLocation();
-
+  const isMounted = useRef(false);
   const bag = decodeURIComponent(location.pathname).split("/");
   const dispatch = useDispatch();
   const { data, loading, error: e1 } = useSelector((bag) => bag.category);
@@ -16,6 +16,8 @@ export default function Design() {
   const [loader, setLoader] = useState(false);
   const [error, setError] = useState(null);
   const [products, setProducts] = useState([]);
+  const { products: allProducts } = useSelector((bag) => bag.products);
+
   useEffect(() => {
     dispatch(fetchAllSubCategoryById(bag[2]));
   }, [dispatch]);
@@ -24,27 +26,32 @@ export default function Design() {
       setSelected(data[0].id);
     }
   }, [data]);
-
-  useEffect(() => {
-    async function fetchProducts() {
-      setLoader(true);
-      try {
-        const res = await fetch(
-          `http://localhost:5000/api/getProductsSubCatWise/${selected}`
-        );
-        const data = await res.json();
-        if (!res.ok) {
-          throw new Error("Internal Server Erro");
-        }
-
-        setProducts(data.products);
-      } catch (e) {
-        setError("Failed to fetch");
-      } finally {
-        setLoader(false);
+  async function fetchProducts() {
+    setLoader(true);
+    try {
+      const res = await fetch(
+        `http://localhost:5000/api/getProductsSubCatWise/${selected}`
+      );
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error("Internal Server Erro");
       }
-    }
 
+      setProducts(data.products);
+    } catch (e) {
+      setError("Failed to fetch");
+    } finally {
+      setLoader(false);
+    }
+  }
+  useEffect(() => {
+    if (!isMounted.current) {
+      isMounted.current = true;
+    } else {
+      fetchProducts();
+    }
+  }, [allProducts]);
+  useEffect(() => {
     if (selected) {
       fetchProducts();
     }
@@ -93,12 +100,23 @@ export default function Design() {
                 {error}
               </p>
             )}
-            <div className=" relative grid grid-cols-5 py-1 flex-wrap gap-5 place-items-center h-auto">
-              {products.length === 0 ? <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] mt-32 text-center text-gray-500 text-4xl tracking-wider font-bold">Sorry We are still buying products of this category :/</div> : 
-                products.map((obj, id) => {
-                  return <ProductCard key={obj.id} data={obj} />;
-                })}
-            </div>
+            {!data ? (
+              <div className="absolute top-[4rem] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] mt-32 text-center text-gray-500 text-4xl tracking-wider font-bold">
+                Nothing to display as no subcategories are added :/
+              </div>
+            ) : (
+              <div className=" relative grid grid-cols-5 py-1 flex-wrap gap-5 place-items-center h-auto">
+                {products.length === 0 ? (
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] mt-32 text-center text-gray-500 text-4xl tracking-wider font-bold">
+                    Sorry We are still buying products of this category :/
+                  </div>
+                ) : (
+                  products.map((obj, id) => {
+                    return <ProductCard key={obj.id} data={obj} />;
+                  })
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
