@@ -36,7 +36,7 @@ const {user} = useSelector(bag=>bag.login);
     <>
       <div
         key={id}
-        className="w-[12.5rem] h-[17.5rem] rounded-xl shadow-xl cursor-pointer border-gray-900"
+        className="w-[12.5rem] h-[17.5rem] rounded-xl shadow-xl cursor-pointer border-gray-900 transition ease-in-out duration-200 hover:scale-105"
         style={{
           backgroundColor: "white",
           border: "1px solid rgba(0 , 0 , 0 , .2)",

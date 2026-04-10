@@ -32,10 +32,8 @@ function RenderCompo() {
           dispatch(setAuthenticated(data.safeUser));
         } else {
           if (res.status === 401) {
-            setTimeout(() => {
-              dispatch(changeModalStatus({ show: true, mode: "LOG_IN" }));
-            }, 5000);
-          }
+                
+            }
         }
       } catch (e) {
         toast.error("Switch on the server please");

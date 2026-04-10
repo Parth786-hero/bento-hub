@@ -7,7 +7,7 @@ export default function AddToCartBtn({ id }) {
   const {products} = useSelector(bag=>bag.products);
   const allProducts = products.flatMap(ele=>ele.products);
   const stock = allProducts.find(ele=>ele.id === id)?.stock;
- 
+ const {user} = useSelector(bag=>bag.login);
   if (stock === 0) {
     return (
       <button
@@ -29,7 +29,7 @@ export default function AddToCartBtn({ id }) {
             addToCart(id);
             // triggerSnapshot();
           }}
-          disabled={error ? true : false}
+          disabled={error || user.email === "kapoorparth096@gmail.com" ? true : false}
           style={{ backgroundColor: error ? "gray" : "var(--color-green)" }}
         >
           Add

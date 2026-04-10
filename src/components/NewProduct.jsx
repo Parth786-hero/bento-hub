@@ -274,7 +274,7 @@ if (error || e) {
 useEffect(() => {
   if (didMountRef.current) {
     // only run when category_id changes after mount
-    if (bag && bag.length > 0) {
+    if (bag && bag.length > 0 && mode === "UPDATE_PRODUCT") {
       setFormData((prev) => ({
         ...prev,
         sub_category_id: prev.sub_category_id || bag[0].id, 

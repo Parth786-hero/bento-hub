@@ -82,7 +82,7 @@ body {
   @apply transform w-[7.8rem] h-[3.6rem] rounded-md font-semibold text-white hover:scale-103 transition-transform  duration-100 cursor-pointer;
 }
 .items-btn{
-  @apply transform bg-green w-[7.8rem] h-[3.6rem] rounded-md font-semibold text-white hover:scale-103 transition-transform  duration-100 cursor-pointer;
+  @apply transform bg-green w-[8rem] h-[3.6rem] rounded-md font-semibold text-white hover:scale-103 transition-transform  duration-100 cursor-pointer;
 }
 .specific-cart-btn {
   @apply transform px-6 py-2 rounded-md font-semibold text-white bg-green hover:scale-103 transition-transform  duration-100 cursor-pointer;

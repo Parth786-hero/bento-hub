@@ -3,8 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useSelector, useDispatch } from "react-redux";
 // import { setShowWelcomes } from "../store/slices/loginSlice"; // adjust import path
 import { setShowWelcomes } from "../../store/slices/loginSlice";
+import { useNavigate } from "react-router-dom";
 export default function Special() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user, showWelcome } = useSelector((bag) => bag.login);
 
   useEffect(() => {
@@ -55,6 +57,7 @@ export default function Special() {
           x: [0, -11, 11, -11, 11, 0],
           transition: { duration: 0.3 },
         }}
+        onClick={()=>navigate("/productsOnScroll")}
       >
         Shop Now
       </motion.button>

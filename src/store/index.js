@@ -7,7 +7,7 @@ import productSlice from "./slices/productSlice";
 import productByCategorySlice from "./slices/productByCategorySlice";
 import searchProductsSlice from "./slices/searchProductsSlice";
 import subcategorySlice from "./slices/subcategorySlice";
-
+import productsOnScrollSlice from "./slices/productsOnScrollSlice";
 const store = configureStore({
     name : "myStore",
     reducer : {
@@ -18,7 +18,8 @@ const store = configureStore({
         products : productSlice,
         productsByCategory : productByCategorySlice,
         searchProducts : searchProductsSlice,
-        subCategory : subcategorySlice
+        subCategory : subcategorySlice,
+        productsOnScroll : productsOnScrollSlice
     }
 });
 

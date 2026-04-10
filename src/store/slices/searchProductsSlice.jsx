@@ -12,7 +12,7 @@ export const searchProducts = createAsyncThunk(
       if (!res.ok) {
         return rejectWithValue(data.message || "Internal server error");
       }
-     
+    
       return data;
     } catch (e) {
       console.log(e.message , "Kapooe");
@@ -41,7 +41,7 @@ const searchProductsSlice = createSlice({
       })
       .addCase(searchProducts.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload.products;
+        state.data = action.payload.products || [];
       })
       .addCase(searchProducts.rejected, (state, action) => {
         

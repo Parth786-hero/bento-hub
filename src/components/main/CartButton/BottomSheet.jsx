@@ -123,7 +123,7 @@ export default function BottomSheet({ isOpen, onClose , donation , setDonation})
                   <div>
                     <h2 className="font-extrabold tracking-wide">
                       {
-                        `${totalPrice < 100 ? "Free" : ""} Delivery in 10 minutes`
+                        `${totalPrice < 100 ? "" :"Free" } Delivery in 10 minutes`
                       }
                     </h2>
                     <p className="text-[12px] text-gray-600 tracking-wide">
