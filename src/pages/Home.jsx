@@ -40,9 +40,9 @@ export default function Home() {
             <i className="fa-solid fa-arrow-up animate-bounce"></i>
           </div>
         )}
-        <div className="max-w-[95%] mx-auto relative " id="father">
+        <div className="max-w-[95%] mx-auto relative" id="father">
           <Navbar />
-          <div className="my-5 flex px-0 items-center gap-x-4 mt-25">
+          <div className="flex px-0 items-center gap-x-4 mt-36 md:mt-25 my-5 overflow-x-auto whitespace-nowrap hide-scrollbar">
             <button
               className="btn-temp"
               onClick={() =>
@@ -85,17 +85,17 @@ export default function Home() {
               More Links...
             </button>
           </div>
-          <div className="frame border h-[70vh] rounded-xl mt-2 overflow-hidden p-6 py-6 flex justify-between items-center">
-            <div className="text-white w-[70%] p-4">
-              <h1 className="text-[2.8rem] leading-[3.5rem] tracking-wide font-normal">
-                <span className="font-bold text-[4rem] text-green">W</span>here
+          <div className="frame h-auto md:h-[70vh] rounded-xl mt-2 overflow-hidden md:p-6 py-3 md:py-6 flex justify-between items-center">
+            <div className="text-white w-auto md:w-[70%] p-3 md:p-4">
+              <h1 className="text-lg md:text-[2.8rem] md:leading-[3.5rem] md:tracking-wide font-normal">
+                <span className="font-bold md:text-[4rem] text-green">W</span>here
                 chaos meets code, we deliver clarity.{" "}
                 <span className="font-bold text-green">
                   Where problems knock
                 </span>
                 , our solutions rock. Where ideas spark, we build them to last.
               </h1>
-              <p className="my-2 text-[14px] leading-[1.5rem] w-[80%] tracking-wider">
+              <p className="my-2 text:md md:text-[14px] md:leading-[1.5rem] w-auto md:w-[80%] md:tracking-wider">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                 Corporis repellendus sapiente iusto similique. Placeat aliquid
                 nesciunt sit earum sint impedit!Lorem ipsum dolor sit amet

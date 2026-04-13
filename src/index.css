@@ -69,6 +69,16 @@ body {
   position: relative;
  
 }
+/* in your global CSS file (e.g., index.css or globals.css) */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
 .bg-thunk{
   background-color: rgba(128, 128, 128, 0.08);
 }

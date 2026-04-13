@@ -51,8 +51,8 @@ export default function Footer() {
   ];
   return (
     <>
-      <div className="flex items-start justify-between mb-12 gap-x-12" id="links">
-        <div className="w-[30%] self-stretch relative">
+      <div className="flex flex-col-reverse md:flex-row items-start justify-between mb-12 gap-x-12" id="links">
+        <div className="w-fill md:w-[30%] self-stretch relative">
           <h2 className="font-extrabold text-xl tracking-wide">Useful links</h2>
           <ul className="grid grid-cols-3 gap-4 mt-3">
             {usefulLinks.map((ele, id) => (
@@ -65,7 +65,7 @@ export default function Footer() {
             ))}
           </ul>
           <h2
-            className="w-full ml-[-.99rem] font-extrabold tracking-wide text-[3.5rem] flex items-center absolute bottom-0 left-1/2 transform -translate-x-1/2 text-center cursor-pointer animate-bento"
+            className="w-full md:ml-[-.99rem] font-extrabold tracking-wide text-[3.5rem] flex items-center relative md:absolute bottom-0 left-1/2 transform -translate-x-1/2 text-center cursor-pointer animate-bento mt-[1.5rem] md:mt-0"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             <span>
@@ -74,13 +74,13 @@ export default function Footer() {
             Bento <span className="text-green">Hub</span>
           </h2>
         </div>
-        <div className="w-[70%]">
+        <div className="w-fill md:w-[70%]">
           <h2 className="font-extrabold text-xl tracking-wide">Categories</h2>
           <ul className="grid grid-cols-3 gap-4 mt-3">
-            {categories.map((ele, id) => (
+            {categories.sort((a , b)=>a.length - b.length).map((ele, id) => (
               <p
                 key={id}
-                className="text-gray-600 font-normal tracking-wider cursor-pointer text-[14px]"
+                className="text-gray-600 font-normal tracking-wider cursor-pointer text-[14px] whitespace-wrap"
               >
                 {ele}
               </p>

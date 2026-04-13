@@ -12,7 +12,7 @@ export const fetchSubCategoryByCatId = createAsyncThunk(
       });
 
       const data = await res.json();
-      
+     
       if (!res.ok) {
         return rejectWithValue(data.message || "Category failed to fetch");
       }

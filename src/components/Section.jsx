@@ -4,7 +4,10 @@ export default function Section() {
       <h1 className="text-left my-4 text-4xl font-semibold pl-0">
         Category <span className="text-green">Hub</span>
       </h1>
-      <p className="text-justify pl-0 mb-7 tracking-wider text-gray-700 mt-[-.4rem] text-justify" id="vegetables">
+      <p
+        className="text-justify pl-0 mb-7 md:tracking-wider text-gray-700 mt-[-.4rem] text-justify"
+        id="vegetables"
+      >
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto
         assumenda inventore repellendus incidunt doloremque, officiis laboriosam
         voluptatem sed autem. Esse voluptatum minima tenetur, officiis id odit
@@ -17,7 +20,7 @@ export default function Section() {
         delectus id. Exercitationem, voluptates.
       </p>
       <div className="my-6 flex flex-col px-0 mt-4 gap-y-1 w-[100%] mx-auto relative">
-        <div className="absolute overflow-hidden w-[16%] h-[16%] rounded-full right-[35rem] top-[16.5rem]">
+        <div className="hidden md:flex absolute overflow-hidden w-[16%] h-[16%] rounded-full right-[35rem] top-[16.5rem]">
           <img
             src="./apple.jpg"
             alt=""
@@ -27,17 +30,13 @@ export default function Section() {
           {/* Overlay */}
           <div className="absolute inset-0 bg-gray-800 opacity-[5%]"></div>
         </div>
-        <div className="absolute overflow-hidden w-[12%] h-[12%] rounded-full right-[49rem] top-[36rem]">
-          <img
-            src="./kiwi.jpg"
-            alt=""
-            className="w-full h-full object-cover"
-          />
+        <div className="hidden md:flex absolute overflow-hidden w-[12%] h-[12%] rounded-full right-[49rem] top-[36rem]">
+          <img src="./kiwi.jpg" alt="" className="w-full h-full object-cover" />
 
           {/* Overlay */}
-          <div className="absolute inset-0 bg-gray-300 opacity-[6%]"></div>
+          <div className="hidden md:flex absolute inset-0 bg-gray-300 opacity-[6%]"></div>
         </div>
-        <div className="absolute overflow-hidden w-[10%] h-[10%] rounded-full right-[2rem] top-[56.5rem]">
+        <div className="hidden  md:flex absolute overflow-hidden w-[10%] h-[10%] rounded-full right-[2rem] top-[56.5rem]">
           <img
             src="./bean.jpg"
             alt=""
@@ -48,7 +47,7 @@ export default function Section() {
           <div className="absolute inset-0 bg-gray-400 opacity-[4%]"></div>
         </div>
 
-        <div className="absolute overflow-hidden w-[8%] h-[8%] rounded-full right-[2rem] top-[-1rem]">
+        <div className="hidden  md:flex absolute overflow-hidden w-[8%] h-[8%] rounded-full right-[2rem] top-[-1rem]">
           <img
             src="./orange.jpg"
             alt=""
@@ -58,20 +57,20 @@ export default function Section() {
           {/* Overlay */}
           <div className="absolute inset-0 bg-gray-800 opacity-[5%]"></div>
         </div>
-       
-        <div
-          className="parent flex justify-between items-center min-h-[12rem] relative"
-          
-        >
+
+        <div className="parent flex flex-col md:flex-row justify-between items-center h-auto md:min-h-[12rem] relative">
           <i className="fa-solid fa-apple-whole text-green absolute text-[0rem] bottom-[-4rem] right-[30rem]"></i>
-          <div className="w-[35%] self-stretch flex items-center justify-center">
-            <div className="img-box-section1 rounded-full w-[20rem] h-[20rem] shadow-lg overflow-hidden"></div>
+          <div className="w-auto md:w-[35%] self-stretch flex items-center justify-center">
+            <div className="img-box-section1 rounded-full w-[15rem] h-[15rem] md:w-[20rem] md:h-[20rem] shadow-lg overflow-hidden"></div>
           </div>
-          <div className="w-[60%] py-8 border-green">
+          <div className="w-auto md:w-[60%] py-8 border-green">
             <h1 className="text-4xl mb-2 tracking-wide">
               Vegetables : <span className="text-green">The Catalyst</span>
             </h1>
-            <p className="text-gray-700 tracking-wider leading-[1.5rem] text-justify" id="fruits">
+            <p
+              className="text-gray-700 md:tracking-wider md:leading-[1.5rem] text-justify"
+              id="fruits"
+            >
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime at
               rem nisi provident inventore eaque expedita consectetur ea fugiat
               recusandae. Lorem ipsum dolor sit amet consectetur adipisicing
@@ -85,18 +84,18 @@ export default function Section() {
             </p>
           </div>
         </div>
-        <div
-          className="parent flex justify-between items-center min-h-[12rem]"
-          
-        >
-          <div className="w-[35%] self-stretch flex items-center justify-center order-1">
-            <div className="img-box-section rounded-full w-[20rem] h-[20rem] shadow-lg overflow-hidden"></div>
+        <div className="parent flex flex-col-reverse md:flex-row justify-between items-center h-auto md:min-h-[12rem]">
+          <div className="w-auto md:w-[35%] self-stretch flex items-center justify-center order-1">
+            <div className="img-box-section rounded-full  w-[15rem] h-[15rem] md:w-[20rem] md:h-[20rem] shadow-lg overflow-hidden"></div>
           </div>
-          <div className="w-[60%] py-8">
+          <div className="w-auto md:w-[60%] py-8">
             <h1 className="text-4xl mb-2 tracking-wide">
               Fruits : <span className="text-green">The Healthy Dose</span>
             </h1>
-            <p className="text-gray-700 tracking-wider leading-[1.5rem] text-justify" id="drinks">
+            <p
+              className="text-gray-700 tracking-wider leading-[1.5rem] text-justify"
+              id="drinks"
+            >
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime at
               rem nisi provident inventore eaque expedita consectetur ea fugiat
               recusandae. <br />
@@ -110,18 +109,15 @@ export default function Section() {
             </p>
           </div>
         </div>
-        <div
-          className="parent flex justify-between items-center min-h-[12rem]"
-          
-        >
-          <div className="w-[35%] self-stretch flex items-center justify-center">
-            <div className="img-box-section2 rounded-full w-[20rem] h-[20rem] shadow-lg overflow-hidden"></div>
+        <div className="parent flex md:flex-row flex-col justify-between items-center h-auto md:min-h-[12rem]">
+          <div className="w-auto md:w-[35%] self-stretch flex items-center justify-center">
+            <div className="img-box-section2 rounded-full  w-[15rem] h-[15rem] md:w-[20rem] md:h-[20rem] shadow-lg overflow-hidden"></div>
           </div>
-          <div className="w-[60%] py-8 pr-6 ">
-            <h1 className="text-4xl mb-2 tracking-wide">
+          <div className="w-fit md:w-[60%] py-8 pr-6 ">
+            <h1 className="text-4xl mb-2 md:tracking-wide">
               Drinks : <span className="text-green">Energy Booster</span>
             </h1>
-            <p className="text-gray-700 tracking-wider leading-[1.5rem] text-justify">
+            <p className="text-gray-700 md:tracking-wider md:leading-[1.5rem] text-justify">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime at
               rem nisi provident inventore eaque expedita consectetur ea fugiat
               recusandae. Lorem ipsum dolor sit amet consectetur adipisicing

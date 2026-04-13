@@ -36,12 +36,12 @@ export default function Login() {
   }
   return (
     <div className="flex items-center justify-between h-auto relative">
-      <div className="absolute w-[12rem] h-[12rem] rounded-full overflow-hidden right-[0rem]">
+      <div className="hidden md:flex absolute w-[12rem] h-[12rem] rounded-full overflow-hidden right-[0rem]">
         <img src="./kiwi.jpg" alt="" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gray-100 opacity-[3%]"></div>
       </div>
       <form
-        className="rounded-lg p-4 w-[65%] relative mb-4"
+        className="rounded-lg p-4 w-full md:w-[65%] relative mb-4"
         onSubmit={handleSubmit}
       >
         <div className="absolute bottom-[-.8rem] w-[88%] text-[14px] flex items-center justify-between left-[50%] transform -translate-x-[50%]">

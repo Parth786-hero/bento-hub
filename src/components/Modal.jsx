@@ -15,7 +15,7 @@ export default function Modal({ heading, children, isOpen }) {
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="bg-white rounded-lg shadow-lg w-[50%] h-auto p-4"
+            className="bg-white rounded-lg shadow-lg w-[85%] md:w-[50%] h-auto p-4"
             initial={{ y: "100%" }} // start off-screen to the right
             animate={{ y: 0 }} // slide into place
             exit={{ y: "100%" }} // slide back out
@@ -35,7 +35,7 @@ export default function Modal({ heading, children, isOpen }) {
             </section>
 
             <hr />
-            <p className="text-[11px] text-gray text-center mt-2 tracking-wider">
+            <p className="text-[11px] text-gray text-center mt-2 md:tracking-wider">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. A placeat
               soluta, id dicta eveniet voluptatum asperiores deleniti illum
               ipsum eos. Lorem ipsum dolor sit amet consectetur, adipisicing
