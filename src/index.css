@@ -121,7 +121,7 @@ body {
 }
 
 .img-box-section{
-  background-image: url("fruit2.jpg");
+  background-image: url("/fruit2.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -131,7 +131,7 @@ body {
 }
 
 .img-box-section1{
-  background-image: url("vegetable1.jpg");
+  background-image: url("/vegetable1.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -141,7 +141,7 @@ body {
 }
 
 .img-box-section2{
-  background-image: url("drink1.jpg");
+  background-image: url("/drink1.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
