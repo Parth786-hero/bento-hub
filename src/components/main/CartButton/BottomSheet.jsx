@@ -7,7 +7,7 @@ import confetti from "canvas-confetti";
 import Bill from "./Bill";
 import { fetchAllProducts } from "../../../store/slices/productSlice";
 import { calculateTotalPrice, calculateGrandTotal } from "../../../utilis/priceUtils";
-
+import { API_URL } from "../../../main";
 export default function BottomSheet({ isOpen, onClose , donation , setDonation}) {
   const dispatch = useDispatch();
   const { getBag, clearTheCart, fetchCart } = useCartContext();
@@ -46,7 +46,7 @@ export default function BottomSheet({ isOpen, onClose , donation , setDonation})
   async function handleCheckout() {
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:5000/api/checkout", {
+      const res = await fetch(`${API_URL}/api/checkout`, {
         method: "PUT",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

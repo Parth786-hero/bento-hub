@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // import { insertIntoProducts } from "../../../../backend/models/productModel";
-
+import { API_URL } from "../../main";
 export const fetchAllProducts = createAsyncThunk(
   "products/fetchAllProducts",
   async (_, { rejectWithValue }) => {
     try {
-      const bag = await fetch("http://localhost:5000/api/products", {
+      const bag = await fetch(`${API_URL}/api/products`, {
         credentials: "include",
         method: "GET",
         headers: {
@@ -30,7 +30,7 @@ export const insertIntoProducts = createAsyncThunk(
   "products/insertIntoProducts",
   async (payload, { rejectWithValue }) => {
     try {
-      const res = await fetch("http://localhost:5000/api/products", {
+      const res = await fetch(`${API_URL}/api/products`, {
         credentials: "include",
         method: "POST",
         headers: {
@@ -57,7 +57,7 @@ export const updateIntoProductsById = createAsyncThunk(
   async (payload, { rejectWithValue }) => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/products/${payload.id}`,
+        `${API_URL}/api/products/${payload.id}`,
         {
           credentials: "include",
           method: "PUT",

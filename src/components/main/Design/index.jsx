@@ -6,6 +6,7 @@ import { fetchAllSubCategoryById } from "../../../store/slices/categorySlice";
 import { useEffect, useRef } from "react";
 import { useState } from "react";
 import ProductCard from "../Products/ProductCard";
+import { API_URL } from "../../../main";
 export default function Design() {
   const location = useLocation();
   const isMounted = useRef(false);
@@ -30,7 +31,7 @@ export default function Design() {
     setLoader(true);
     try {
       const res = await fetch(
-        `http://localhost:5000/api/getProductsSubCatWise/${selected}`
+        `${API_URL}/api/getProductsSubCatWise/${selected}`
       );
       const data = await res.json();
       if (!res.ok) {

@@ -15,6 +15,8 @@ import ScrollToTop from "./utilis/ScrollToTop";
 import { CartProvider } from "./hooks/useCart";
 import ModalComponent from "./components/ModalCompo";
 const root = ReactDOM.createRoot(document.querySelector("#root"));
+export const API_URL = import.meta.env.VITE_API_URL;
+
 function RenderCompo() {
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((bag) => bag.login);

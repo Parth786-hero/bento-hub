@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import { API_URL } from "../../main";
 export const fetchProductsOnScroll = createAsyncThunk(
     "productsOnScroll/fetch",
     async ({ limit, lastId }, { rejectWithValue }) => {
@@ -9,7 +9,7 @@ export const fetchProductsOnScroll = createAsyncThunk(
         const params = new URLSearchParams();
         if (limit) params.append("limit", limit);
         if (lastId) params.append("lastId", lastId);
-        const url = `http://localhost:5000/api/productsOnScroll?${params.toString()}`;
+        const url = `${API_URL}/api/productsOnScroll?${params.toString()}`;
        
         const res = await fetch(url, {
           method: "GET",

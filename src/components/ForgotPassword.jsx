@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import {useDispatch} from 'react-redux';
 import { changeModalStatus } from "../store/slices/modalSlice";
 import PasswordValidator from "./PasswordValidator";
+import { API_URL } from "../main";
 export default function ForgotPassword() {
   const dispatch = useDispatch();
   const [focused, setFocused] = useState(false);
@@ -21,7 +22,7 @@ export default function ForgotPassword() {
    try{
     setLoader(true);
     if(number){
-      const res = await fetch(`http://localhost:5000/api/retrieveUser?number=${number}`, {
+      const res = await fetch(`${API_URL}/api/retrieveUser?number=${number}`, {
         method: "GET",
         credentials: "include",
         headers: {
@@ -60,7 +61,7 @@ export default function ForgotPassword() {
      
       try {
         setLoader2(true);
-        const res = await fetch("http://localhost:5000/api/changeUserPassword", {
+        const res = await fetch(`${API_URL}/api/changeUserPassword`, {
           method: "PATCH",
           credentials: "include",
           headers: {

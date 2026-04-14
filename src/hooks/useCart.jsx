@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useContext, createContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserCartId } from "../store/slices/loginSlice";
+import { API_URL } from "../main";
 function useCart() {
   const dispatch = useDispatch();
   const [items, setItems] = useState(() => {
@@ -17,7 +18,7 @@ function useCart() {
   async function fetchCart() {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:5000/api/getCart", {
+      const res = await fetch(`${API_URL}/api/getCart`, {
         credentials: "include",
       });
       const data = await res.json();
@@ -51,7 +52,7 @@ function useCart() {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(async () => {
       try {
-        await fetch("http://localhost:5000/api/saveCart", {
+        await fetch(`${API_URL}/api/saveCart`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           credentials: "include",

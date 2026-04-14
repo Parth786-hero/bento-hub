@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import { API_URL } from "../../main";
 export const categoryWiseProduct = createAsyncThunk(
   "products/productByCategory",
   async (id, { rejectWithValue }) => {
     try {
-      const res = await fetch("http://localhost:5000/api/products/category/" + id);
+      const res = await fetch(`${API_URL}/api/products/category/` + id);
       const data = await res.json();
 
       if (!res.ok) {

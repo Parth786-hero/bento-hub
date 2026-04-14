@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import { API_URL } from "../../main";
 export const fetchCategory = createAsyncThunk(
   "category/fetchCategory",
   async (_, { rejectWithValue }) => {
     try {
-      const res = await fetch("http://localhost:5000/api/category", {
+      const res = await fetch(`${API_URL}/api/category`, {
         method: "GET",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
@@ -24,7 +24,7 @@ export const fetchAllSubCategoryById = createAsyncThunk(
   "category/fetchSubCategoryById",
   async (id, { rejectWithValue }) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/getAllSubCatById/${id}`, {
+      const res = await fetch(`${API_URL}/api/getAllSubCatById/${id}`, {
         method: "GET",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

@@ -7,6 +7,7 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import { fetchAllProducts } from "../store/slices/productSlice";
 import {toast} from 'react-toastify';
 import { changeModalStatus } from "../store/slices/modalSlice";
+import { API_URL } from "../main";
 export default function NewProduct() {
   // const dispatch = useDispatch();
   // const didMountRef = useRef(false);
@@ -171,7 +172,7 @@ const [formData, setFormData] = useState({
 useEffect(() => {
   async function fetchCat() {
     try {
-      const res = await fetch("http://localhost:5000/api/category", {
+      const res = await fetch(`${API_URL}/api/category`, {
         method: "GET",
         credentials: "include",
         headers: { "Content-Type": "application/json" },

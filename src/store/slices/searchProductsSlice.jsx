@@ -1,12 +1,13 @@
 // src/slices/searchSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { API_URL } from "../../main";
 
 // Async thunk to call backend API
 export const searchProducts = createAsyncThunk(
   "search/searchProducts",
   async (query, { rejectWithValue }) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/products/search?q=${query}`);
+      const res = await fetch(`${API_URL}/api/products/search?q=${query}`);
       const data = await res.json();
       
       if (!res.ok) {

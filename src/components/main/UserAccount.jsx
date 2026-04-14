@@ -5,7 +5,7 @@ import { logout } from "../../store/slices/loginSlice";
 import { changeModalStatus } from "../../store/slices/modalSlice";
 import { useCartContext } from "../../hooks/useCart";
 import {useNavigate} from 'react-router-dom';
-
+import { API_URL } from "../../main";
 export default function UserAccount() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -20,7 +20,7 @@ export default function UserAccount() {
     setLoader(true);
     try {
       // Step 2: Call logout API
-      const res = await fetch("http://localhost:5000/api/logout", {
+      const res = await fetch(`${API_URL}/api/logout`, {
         method: "POST",
         credentials: "include",
       });

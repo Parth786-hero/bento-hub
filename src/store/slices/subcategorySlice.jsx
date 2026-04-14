@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import { API_URL } from "../../main";
 // Async thunk to fetch subcategories
 export const fetchSubCategoryByCatId = createAsyncThunk(
   "category/fetchSubCategoryByCatId",
   async (id, { rejectWithValue }) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/getAllSubCatById/${id}`, {
+      const res = await fetch(`${API_URL}/api/getAllSubCatById/${id}`, {
         method: "GET",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
