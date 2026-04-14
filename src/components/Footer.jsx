@@ -76,7 +76,7 @@ export default function Footer() {
         </div>
         <div className="w-fill md:w-[70%]">
           <h2 className="font-extrabold text-xl tracking-wide">Categories</h2>
-          <ul className="grid grid-cols-3 gap-4 mt-3">
+          <ul className="grid grid-cols-3 gap-4 mt-3 mb-3">
             {categories.sort((a , b)=>a.length - b.length).map((ele, id) => (
               <p
                 key={id}
