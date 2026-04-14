@@ -30,7 +30,7 @@ export default function Home() {
   }, [modalStatus]);
   return (
     <>
-      <div className="overflow-hidden relative bg-thunk">
+      <div className="p-1.5 md:p-0 overflow-hidden relative bg-thunk">
        
         {scrolled && (
           <div
@@ -101,7 +101,7 @@ export default function Home() {
                 nesciunt sit earum sint impedit!Lorem ipsum dolor sit amet
                 consectetur adipisicing elit. Labore
               </p>
-              <div className="flex gap-x-8 mt-4">
+              <div className="flex gap-x-4 md:gap-x-8 mt-4">
                 <motion.button
                   className="btn-secondary capitalize tracking-wide"
                   onClick={() =>

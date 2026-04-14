@@ -51,8 +51,8 @@ export default function Footer() {
   ];
   return (
     <>
-      <div className="flex flex-col-reverse md:flex-row items-start justify-between mb-12 gap-x-12" id="links">
-        <div className="w-fill md:w-[30%] self-stretch relative">
+      <div className="flex flex-col-reverse md:flex-row items-start justify-between mb-12 gap-x-12 md:mt-12" id="links">
+        <div className="w-fill md:w-[30%] self-stretch relative mt-3 md:mt-0">
           <h2 className="font-extrabold text-xl tracking-wide">Useful links</h2>
           <ul className="grid grid-cols-3 gap-4 mt-3">
             {usefulLinks.map((ele, id) => (
