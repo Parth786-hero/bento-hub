@@ -101,7 +101,7 @@ export default function Navbar() {
           )}
         </nav>
       </div> */}
-      <div className="fixed w-full top-0 left-0 z-50 bg-gray-100">
+      <div className="fixed w-full top-0 left-0 z-50 bg-gray-100 px-1.5 md:px-0">
         <nav className="w-[95%] mx-auto py-5">
           {/* Mobile layout (smaller than md) */}
           <div className="flex flex-col gap-4 md:hidden">
