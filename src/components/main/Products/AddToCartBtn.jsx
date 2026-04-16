@@ -1,6 +1,8 @@
 import { useCartContext } from "../../../hooks/useCart";
 import { useSelector } from "react-redux";
+import { useState , useEffect } from "react";
 export default function AddToCartBtn({ id }) {
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const { getItemsPerCard, addToCart, removeFromCart, error } =
     useCartContext();
   const nums = getItemsPerCard(id);
@@ -9,10 +11,18 @@ export default function AddToCartBtn({ id }) {
   const stock = allProducts.find(ele=>ele.id === id)?.stock;
  const {user} = useSelector(bag=>bag.login);
  console.log(error);
+ useEffect(() => {
+  const checkScreen = () => {
+    setIsSmallScreen(window.innerWidth < 768); // md breakpoint
+  };
+  checkScreen();
+  window.addEventListener("resize", checkScreen);
+  return () => window.removeEventListener("resize", checkScreen);
+}, []);
   if (stock === 0) {
     return (
       <button
-        className="product-btn-out-of-stock cursor-not-allowed"
+        className={`${isSmallScreen ? "product-btn-out-of-stock-mini" : "product-btn-out-of-stock"} cursor-not-allowed`}
         disabled
       >
         {" "}
@@ -24,7 +34,7 @@ export default function AddToCartBtn({ id }) {
     <>
       {nums === 0 ? (
         <button
-          className={`product-btn font-semibold cursor-pointer`}
+          className={`${isSmallScreen ? "product-mini-btn" : "product-btn"} font-semibold cursor-pointer`}
           onClick={(e) => {
             e.stopPropagation();
             addToCart(id);

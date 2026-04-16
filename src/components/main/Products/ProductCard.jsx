@@ -36,7 +36,7 @@ const {user} = useSelector(bag=>bag.login);
     <>
       <div
         key={id}
-        className="w-[8.2rem] h-[11rem] md:w-[12.5rem] md:h-[17.5rem] rounded-xl shadow-xl cursor-pointer border-gray-900 transition ease-in-out duration-200 hover:scale-105 mb-2 md:mb-0"
+        className="w-[8.3rem] h-[12rem] md:w-[12.5rem] md:h-[17.5rem] rounded-xl shadow-xl cursor-pointer border-gray-900 transition ease-in-out duration-200 hover:scale-105 mb-2 md:mb-0"
         style={{
           backgroundColor: "white",
           border: "1px solid rgba(0 , 0 , 0 , .2)",
@@ -102,7 +102,7 @@ const {user} = useSelector(bag=>bag.login);
                 ₹{price}
               </p>
             </div>
-            {/* <AddToCartBtn id={id} /> */}
+            <AddToCartBtn id={id} />
           </div>
         </div>
       </div>
