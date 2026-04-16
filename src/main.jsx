@@ -58,9 +58,10 @@ function RenderCompo() {
     </>
   );
 }
+const basename = import.meta.env.MODE === "production" ? "/bento-hub-ui" : "/";
 root.render(
   <>
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <Provider store={store}>
         <ScrollToTop />
         <Routes>
