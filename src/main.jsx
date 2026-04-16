@@ -25,7 +25,7 @@ function RenderCompo() {
   useEffect(() => {
     async function checkAuth() {
       try {
-        const res = await fetch("http://localhost:5000/api/me", {
+        const res = await fetch(`${API_URL}/api/me`, {
           credentials: "include",
         });
         const data = await res.json();
