@@ -15,7 +15,8 @@ export default function CategoryCard({ data }) {
       <div className="w-full h-[70%] flex items-center justify-center">
         <div className="w-[6.5rem] h-[100%] overflow-hidden rounded-2xl p-3">
           <img
-            src={`./${image_url}`}
+            // src={`./${image_url}`}
+            src={`${import.meta.env.BASE_URL}${image_url}`}
             alt=""
             className="w-full h-full object-contain object-center"
           />

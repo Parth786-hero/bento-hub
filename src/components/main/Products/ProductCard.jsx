@@ -64,7 +64,8 @@ const {user} = useSelector(bag=>bag.login);
             </div>
           )}
           <img
-            src={`/${image_url}`}
+            // src={`/${image_url}`}
+            src={`${import.meta.env.BASE_URL}${image_url}`}
             alt="scene description"
             className="w-full h-full object-contain transition-transform duration-300"
           />
