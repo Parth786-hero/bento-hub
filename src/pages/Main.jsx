@@ -23,9 +23,11 @@ export default function Main() {
             path="/"
             element={
               <>
+                <div className="overflow-hidden">
                 <Special />
                 <Category />
                 <Products />
+                </div>
               </>
             }
           />

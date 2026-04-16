@@ -22,14 +22,14 @@ export default function AllItemsPerCategory() {
   return (
     <>
       <>
-        <div className="mt-30 h-[75vh] shadow-xl rounded-md bg-gray-100 border-1  border-gray-300 overflow-y-auto">
+        <div className="mt-35 md:mt-30 h-[50vh] md:h-[75vh] shadow-xl rounded-md bg-gray-100 border border-gray-300">
           <h2
-            className="sticky top-0 z-[10] border-b border-gray-300 font-extrabold tracking-wider h-[10%] flex items-center px-5"
+            className="sticky top-0 z-[10] border-b border-gray-300 font-extrabold tracking-wider h-[10%] flex items-center px-3 md:px-5"
             style={{ backgroundColor: "white" }}
           >
             {bag[bag.length - 1]}
           </h2>
-          <div className="h-full relative grid grid-cols-6 p-4 gap-y-4 pb-150 place-items-center gap-7">
+          <div className="overflow-y-auto overflow-x-hidden relative grid grid-cols-3 md:grid-cols-6 md:p-4 gap-y-1 md:gap-y-4 md:pb:150 place-items-center py-3 md:gap-7 h-[90%] md-h-full">
             {loading && (
               <div className="absolute top-[35%] left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                 <Loader />

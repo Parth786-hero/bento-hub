@@ -36,14 +36,14 @@ const {user} = useSelector(bag=>bag.login);
     <>
       <div
         key={id}
-        className="w-[12.5rem] h-[17.5rem] rounded-xl shadow-xl cursor-pointer border-gray-900 transition ease-in-out duration-200 hover:scale-105"
+        className="w-[7.5rem] h-[11rem] md:w-[12.5rem] md:h-[17.5rem] rounded-xl shadow-xl cursor-pointer border-gray-900 transition ease-in-out duration-200 hover:scale-105 mb-2 md:mb-0"
         style={{
           backgroundColor: "white",
           border: "1px solid rgba(0 , 0 , 0 , .2)",
         }}
         onClick={shoot}
       >
-        <div className="w-full h-[45%] overflow-hidden p-4 relative">
+        <div className="w-full h-[40%] md:h-[45%] overflow-hidden p-2 md:p-4 relative">
           {
             user.email === "kapoorparth096@gmail.com" && <i
             className="absolute top-1 left-2 fa-solid fa-pencil grid text-center items-center justify-center block shadow-xl rounded-full text-md bg-gray-200 hover:scale-110"
@@ -53,7 +53,7 @@ const {user} = useSelector(bag=>bag.login);
           }
           {discounted_price > 0 && (
             <div
-              className="bg-green text-white w-[2.2rem] h-[2.2rem] rounded-b-full text-[11px] text-center p-2 font-extrabold tracking-wide absolute right-2 top-0 leading-3"
+              className="bg-green text-white w-[1.5rem] h-[1.8rem] md:w-[2.2rem] md:h-[2.2rem] rounded-b-full text-[7.5px] md:text-[11px] text-center p-2 md:font-extrabold md:tracking-wide absolute right-2 top-0 md:leading-3"
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -71,38 +71,38 @@ const {user} = useSelector(bag=>bag.login);
           />
         </div>
 
-        <div className="w-full h-[55%] p-3 flex-col flex justify-betwee pb-4">
-          <h2 className="font-extrabold tracking-wide">{name}</h2>
+        <div className="w-full h-[60%] md:h-[55%] p-2 md:p-3 flex-col flex justify-betwee md:pb-4">
+          <h2 className="font-extrabold md:tracking-wide whitespace-nowrap text-[10px] md:text-[14.5px]">{name}</h2>
           {description.length > 15 ? (
-            <p className="text-[14px] tracking-wide leading-snug my-1">
+            <p className="text-[9px] md:text-[14px] md:tracking-wide md:leading-snug md:my-1">
               {description.slice(0, 16) + "..."}
             </p>
           ) : (
-            <p className="text-[14px] tracking-wide leading-snug my-1">
+            <p className="text-[9px] md:text-[14px] md:tracking-wide md:leading-snug md:my-1">
               {description}
             </p>
           )}
-          <p className="text-[12px] tracking-wide text-gray-500">{quantity}</p>
-          <div className="relative flex items-center justify-between self-end w-full h-[2.7rem] mt-3">
+          <p className="text-[10px] md:text-[12px] md:tracking-wide text-gray-500 my-1 md:my-0">{quantity}</p>
+          <div className="relative flex items-center justify-between self-end w-full h-[2.7rem] md:mt-3">
             {productLimitError?.id === id && (
-              <p className="text-[11px] text-red-600 absolute right-0 top-[-1rem] font-bold tracking-wide animate-fade">
+              <p className="text-[9rem] md:text-[11px] text-red-600 absolute right-0 top-[-1rem] font-bold tracking-wide animate-fade">
                 {productLimitError.message}
               </p>
             )}
 
             <div>
               {discounted_price > 0 && (
-                <p className="font-bold text-[13px] ">₹{discounted_price}</p>
+                <p className="font-bold text-[10px] md:text-[13px] ">₹{discounted_price}</p>
               )}
               <p
-                className={`font-bold text-[12.5px] ${
+                className={`font-bold text-[11.5px] md:text-[12.5px] ${
                   discounted_price > 0 ? "text-gray-400 line-through" : ""
                 }`}
               >
                 ₹{price}
               </p>
             </div>
-            <AddToCartBtn id={id} />
+            {/* <AddToCartBtn id={id} /> */}
           </div>
         </div>
       </div>

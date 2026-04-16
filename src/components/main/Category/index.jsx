@@ -31,13 +31,15 @@ export default function Category() {
     );
   return (
     <>
-     <h2 className="font-bold text-3xl tracking-wide leading-snug mt-6">Featured Categories</h2>
-      <div className="my-1 grid grid-cols-11 mb-8">
+     <h2 className="font-bold text-2xl md:text-3xl tracking-wide leading-snug mt-6">Featured Categories</h2>
+      <div className="my-1 grid grid-cols-5 md:grid-cols-11 mb-8">
        
         {
         data.map(obj=><CategoryCard key={obj.id} data={obj}/>)
         }
       </div>
+      
+
     </>
   );
 }

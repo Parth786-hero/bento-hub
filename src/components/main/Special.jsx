@@ -20,7 +20,7 @@ export default function Special() {
   }, [showWelcome, dispatch]);
 
   return (
-    <div className="mt-[7.3rem] h-[20rem] rounded-2xl relative overflow-hidden div-bg px-8 py-6">
+    <div className="mt-[9rem] md:mt-[7.3rem] h-auto md:h-[20rem] rounded-2xl relative overflow-hidden div-bg p-4 md:px-8 md:py-6">
       {/* Welcome Back message inside parent */}
       <AnimatePresence>
         {showWelcome && (
@@ -37,17 +37,17 @@ export default function Special() {
       </AnimatePresence>
 
       {/* Main content */}
-      <h1 className="relative z-10 text-white text-5xl w-[65%] tracking-wide leading-snug font-extrabold">
+      <h1 className="relative z-10 text-white text-3xl md:text-5xl w-auto md:w-[65%] md:tracking-wide md:leading-snug font-extrabold">
         Stock Up daily <span className="text-green">Essentials</span>.
       </h1>
-      <p className="text-3xl text-white w-[60%] mt-3 leading-snug tracking-wide">
+      <p className="md:text-3xl text-white w-auto md:w-[60%] mt-3 md:leading-snug md:tracking-wide">
         Get Farm Fresh <span className="text-green">goodness</span> and a{" "}
         <span className="text-green">range of exotic</span> fruits, vegetables,
         eggs and more. <span className="text-green">Explore</span> more on our
         store. All authentic brands here.
       </p>
       <motion.button
-        className="btn-white px-6 py-2 rounded-md font-black tracking-wide shadow-md mt-7"
+        className="btn-white px-6 py-2 rounded-md font-black tracking-wide shadow-md mt-3 md:mt-7"
         whileHover={{
           x: [0, -10, 10, -10, 10, 0],
           transition: { duration: 0.4 },
