@@ -36,7 +36,7 @@ const {user} = useSelector(bag=>bag.login);
     <>
       <div
         key={id}
-        className="w-[7.5rem] h-[11rem] md:w-[12.5rem] md:h-[17.5rem] rounded-xl shadow-xl cursor-pointer border-gray-900 transition ease-in-out duration-200 hover:scale-105 mb-2 md:mb-0"
+        className="w-[8.2rem] h-[11rem] md:w-[12.5rem] md:h-[17.5rem] rounded-xl shadow-xl cursor-pointer border-gray-900 transition ease-in-out duration-200 hover:scale-105 mb-2 md:mb-0"
         style={{
           backgroundColor: "white",
           border: "1px solid rgba(0 , 0 , 0 , .2)",
@@ -53,7 +53,7 @@ const {user} = useSelector(bag=>bag.login);
           }
           {discounted_price > 0 && (
             <div
-              className="bg-green text-white w-[1.5rem] h-[1.8rem] md:w-[2.2rem] md:h-[2.2rem] rounded-b-full text-[7.5px] md:text-[11px] text-center p-2 md:font-extrabold md:tracking-wide absolute right-2 top-0 md:leading-3"
+              className="bg-green text-white w-[1.5rem] h-[1.8rem] md:w-[2.2rem] md:h-[2.2rem] rounded-b-full text-[8.5px] md:text-[11px] text-center p-2 md:font-extrabold md:tracking-wide absolute right-2 top-0 md:leading-3"
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -72,13 +72,13 @@ const {user} = useSelector(bag=>bag.login);
         </div>
 
         <div className="w-full h-[60%] md:h-[55%] p-2 md:p-3 flex-col flex justify-betwee md:pb-4">
-          <h2 className="font-extrabold md:tracking-wide whitespace-nowrap text-[10px] md:text-[14.5px]">{name}</h2>
+          <h2 className="font-extrabold md:tracking-wide whitespace-nowrap text-[11.5px] md:text-[14.5px]">{name}</h2>
           {description.length > 15 ? (
-            <p className="text-[9px] md:text-[14px] md:tracking-wide md:leading-snug md:my-1">
+            <p className="text-[10.5px] md:text-[14px] md:tracking-wide md:leading-snug md:my-1">
               {description.slice(0, 16) + "..."}
             </p>
           ) : (
-            <p className="text-[9px] md:text-[14px] md:tracking-wide md:leading-snug md:my-1">
+            <p className="text-[10.5px] md:text-[14px] md:tracking-wide md:leading-snug md:my-1">
               {description}
             </p>
           )}
@@ -92,7 +92,7 @@ const {user} = useSelector(bag=>bag.login);
 
             <div>
               {discounted_price > 0 && (
-                <p className="font-bold text-[10px] md:text-[13px] ">₹{discounted_price}</p>
+                <p className="font-bold text-[10.5px] md:text-[13px] ">₹{discounted_price}</p>
               )}
               <p
                 className={`font-bold text-[11.5px] md:text-[12.5px] ${
