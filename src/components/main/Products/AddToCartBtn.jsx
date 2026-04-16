@@ -10,7 +10,7 @@ export default function AddToCartBtn({ id }) {
   const allProducts = products.flatMap(ele=>ele.products);
   const stock = allProducts.find(ele=>ele.id === id)?.stock;
  const {user} = useSelector(bag=>bag.login);
- console.log(error);
+ 
  useEffect(() => {
   const checkScreen = () => {
     setIsSmallScreen(window.innerWidth < 768); // md breakpoint

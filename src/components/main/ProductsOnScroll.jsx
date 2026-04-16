@@ -28,7 +28,7 @@ export default function ProductsOnScroll() {
   }, [loading, hasMore, lastId, dispatch]);
   return (
     <>
-      <div className="mt-[7.3rem] relative overflow-hidden border-red-500">
+      <div className="mt-[9rem] md:mt-[7.3rem] relative overflow-hidden border-red-500">
         {loading ? (
           <div className="text-center font-bold tracking-wider flex items-center justify-center gap-2 my-4">
             <span className="block">fetching... </span>
@@ -40,7 +40,7 @@ export default function ProductsOnScroll() {
           </p>
         ) : items.length === 0 ? (
           <p className="text-center text-[3rem] text-gray-400 font-bold my-9">No Products to show...</p>
-        ) : <div className="grid grid-cols-6 py-1 flex-wrap gap-5">
+        ) : <div className="grid grid-cols-4 md:grid-cols-6 py-1 flex-wrap gap-5">
             {    
           items.map((p) => {
             return <ProductCard key={p.id} data={p} />
