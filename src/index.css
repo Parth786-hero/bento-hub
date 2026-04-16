@@ -204,7 +204,7 @@ body {
 .product-mini-btn{
  
     /* border : 2px solid red; */
-    padding : .18rem 1.2rem;
+    padding : .18rem .9rem;
     border-radius : .2rem;
     /* cursor : pointer; */
     background-color: var(--color-green);

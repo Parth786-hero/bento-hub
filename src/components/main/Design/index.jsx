@@ -67,7 +67,7 @@ export default function Design() {
         >
           {bag[bag.length - 1]}
         </h2>
-        <div className="grid grid-cols-[15%_85%] md:grid-cols-[8%_92%] h-[90%]">
+        <div className="grid grid-cols-[18%_82%] md:grid-cols-[8%_92%] h-[90%]">
           <div
             className="h-100% overflow-y-auto overflow-x-hidden flex flex-col items-center justify-start gap-1 px-1 py-2"
             style={{ backgroundColor: "white" }}
@@ -106,7 +106,7 @@ export default function Design() {
                 Nothing to display as no subcategories are added :/
               </div>
             ) : (
-              <div className=" relative grid grid-cols-3 md:grid-cols-5 py-1 flex-wrap gap-5 place-items-center h-auto">
+              <div className=" relative grid grid-cols-2 md:grid-cols-5 py-1 flex-wrap gap-5 place-items-center h-auto">
                 {products.length === 0 ? (
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] mt-32 text-center text-gray-500 text-4xl tracking-wider font-bold">
                     Sorry We are still buying products of this category :/

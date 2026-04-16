@@ -58,7 +58,7 @@ export default function SpecificItem() {
           </p>
         </div>
       ) : (
-        <div className="mt-30 min-h-screen py-5">
+        <div className="mt-30 md:min-h-screen py-5">
           <div className="flex justify-around h-[19.5rem] border-b-1 border-gray-400">
             <div className="relative w-[45%] flex items-center justify-center border-r-1 border-gray-400 p-4">
               {discounted_price > 0 && (
@@ -96,24 +96,24 @@ export default function SpecificItem() {
                 <p className="text-[14px] mb-4 font-normal text-gray-500">{`Home${decodeURIComponent(
                   location.pathname
                 )}`}</p>
-                <h2 className="text-3xl font-bold tracking-wider">{name}</h2>
-                <p className="text-xl my-2">{description}.</p>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-wider">{name}</h2>
+                <p className="text-lg md:text-xl my-2">{description}.</p>
                 <p className="text-gray-500">{quantity}</p>
                 <div className="relative flex items-center justify-between">
                   {productLimitError?.id === id && (
-                    <p className="text-[11px] text-red-600 absolute right-0 top-[-.7rem] font-bold tracking-wide animate-fade">
+                    <p className="text-[9px] md:text-[11px] text-red-600 absolute right-0 top-[-.7rem] font-bold tracking-wide animate-fade">
                       {productLimitError.message}
                     </p>
                   )}
                   <div>
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2.5 md:gap-3">
                       {discounted_price > 0 && (
-                        <p className="mt-2 font-extrabold text-xl">
+                        <p className="mt-2 font-extrabold md:text-lg md:text-xl">
                           Rs.{discounted_price}
                         </p>
                       )}
                       <p
-                        className={`mt-2 text-xl ${
+                        className={`mt-2 text-md md:text-xl ${
                           discounted_price > 0
                             ? "text-gray-500 line-through"
                             : ""
@@ -130,7 +130,7 @@ export default function SpecificItem() {
                   <AddToCartBtn id={id} />
                 </div>
                 <ol
-                  className="mt-5 text-[12px] font-extrabold tracking-wide leading-relaxed list-decimal list-inside mb-4"
+                  className="hidden md:block mt-5 text-[12px] font-extrabold tracking-wide leading-relaxed list-decimal list-inside mb-4"
                   type="1"
                 >
                   <li>
@@ -154,7 +154,7 @@ export default function SpecificItem() {
           <h2 className="mt-6 text-2xl font-bold tracking-wider">
             Similar products
           </h2>
-          <div className="mt-3 grid grid-cols-6 py-1 flex-wrap gap-5">
+          <div className="mt-3 grid grid-cols-3 md:grid-cols-6 py-1 flex-wrap gap-5">
             {products.map((ele) => {
               return ele.id !== id && <ProductCard key={ele.id} data={ele} />;
             })}
