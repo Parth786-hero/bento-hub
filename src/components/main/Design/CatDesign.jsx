@@ -15,7 +15,8 @@ export default function CatDesign({ data , selected , onSelect }) {
     >
       <div className="w-[90%] h-[65%] mx-auto p-1 rounded-2xl overflow-hidden flex items-center justify-center">
         <img
-          src={`/${image_url}`}
+          // src={`/${image_url}`}
+          src={`${import.meta.env.BASE_URL}${image_url}`}
           alt={name}
           className="w-full h-full object-contain object-center rounded-2xl"
         />

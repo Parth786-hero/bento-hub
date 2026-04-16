@@ -85,7 +85,8 @@ export default function SpecificItem() {
                 onClick={() => navigate("/")}
               ></i>
               <img
-                src={`/${image_url}`}
+                // src={`/${image_url}`}
+                src={`${import.meta.env.BASE_URL}${image_url}`}
                 alt="Hello"
                 className="w-full h-full object-contain object-center background-center"
               />
