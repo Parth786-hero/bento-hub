@@ -7,6 +7,7 @@ import { updateFormData } from "../store/slices/formSlice";
 import PasswordValidator from "./PasswordValidator";
 export default function Register() {
   const dispatch = useDispatch();
+  const [isSmallScreen , setIsSmallScreen] = useState();
   const formData = useSelector((bag) => bag.form.form);
   const [focused, setFocused] = useState(false);
   const [on, setOn] = useState(true);
@@ -57,6 +58,14 @@ export default function Register() {
       });
     }
   }, [focused]);
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsSmallScreen(window.innerWidth < 768); // md breakpoint
+    };
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
   return (
     <div className="flex items-center justify-between h-auto relative">
       <form
@@ -143,7 +152,7 @@ export default function Register() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 20 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="absolute bottom-0 left-[-85%]"
+                  className={`absolute ${isSmallScreen ? "top-[-11rem] left-[9rem]" : "bottom-0 left-[-85%]"}`}
                 >
                   <PasswordValidator
                     password={formData.password}

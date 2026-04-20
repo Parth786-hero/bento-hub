@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect} from "react";
 
 function PasswordValidator({ password , setOn}) {
+ 
   const rules = [
     { label: "At least 8 characters", test: (pw) => pw.length >= 8 },
     { label: "One uppercase letter", test: (pw) => /[A-Z]/.test(pw) },
@@ -14,6 +15,7 @@ useEffect(()=>{
     setOn(false);
   }
 } , [isValid]);
+
   return (
     <div className="shadow-xl rounded p-3 w-64 bg-gray-50">
       <p className="font-semibold mb-2">Password must contain:</p>

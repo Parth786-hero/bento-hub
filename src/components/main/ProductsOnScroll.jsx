@@ -28,7 +28,7 @@ export default function ProductsOnScroll() {
   }, [loading, hasMore, lastId, dispatch]);
   return (
     <>
-      <div className="mt-[9rem] md:mt-[7.3rem] relative overflow-hidden border-red-500">
+      <div className="mt-[11rem] md:mt-[7.3rem] relative overflow-hidden border-red-500">
         {loading ? (
           <div className="text-center font-bold tracking-wider flex items-center justify-center gap-2 my-4">
             <span className="block">fetching... </span>

@@ -58,8 +58,8 @@ export default function SpecificItem() {
           </p>
         </div>
       ) : (
-        <div className="mt-30 md:min-h-screen py-5">
-          <div className="flex justify-around h-[19.5rem] border-b-1 border-gray-400">
+        <div className="mt-40 md:mt-30 md:min-h-screen py-5">
+          <div className="flex justify-around h-auto md:h-[19.5rem] border-b-1 border-gray-400">
             <div className="relative w-[45%] flex items-center justify-center border-r-1 border-gray-400 p-4">
               {discounted_price > 0 && (
                 <div
@@ -97,7 +97,8 @@ export default function SpecificItem() {
                   location.pathname
                 )}`}</p>
                 <h2 className="text-2xl md:text-3xl font-bold tracking-wider">{name}</h2>
-                <p className="text-lg md:text-xl my-2">{description}.</p>
+                <p className="text-lg md:text-xl my-2">{description
+                }.</p>
                 <p className="text-gray-500">{quantity}</p>
                 <div className="relative flex items-center justify-between">
                   {productLimitError?.id === id && (
