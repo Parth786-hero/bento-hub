@@ -100,7 +100,7 @@ export default function BottomSheet({ isOpen, onClose , donation , setDonation})
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="bg-blue-50 fixed top-0 right-0 h-full shadow-xl z-40 w-[30%] flex flex-col"
+            className="bg-blue-50 fixed top-0 right-0 h-full shadow-xl z-40 w-full md:w-[30%] flex flex-col"
           >
             {/* Header */}
             <div className="sticky top-0 bg-white-pure px-5 pt-5">

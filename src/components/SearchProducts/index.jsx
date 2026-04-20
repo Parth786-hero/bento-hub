@@ -8,7 +8,7 @@ export default function SearchProducts() {
   const [search, setSearch] = useState("");
   return (
     <>
-      <div className="min-h-[45vh] mt-25 relative">
+      <div className="min-h-[45vh] mt-35 md:mt-25 relative">
         <SearchBar search = {search} setSearch={setSearch}/>
         {loading ? (
           <Loader />
@@ -22,7 +22,7 @@ export default function SearchProducts() {
           </div>
         )}
         {data.length > 0 && (
-          <div className="grid grid-cols-6 py-6 flex-wrap gap-5">
+          <div className="grid grid-cols-3 md:grid-cols-6 py-6 flex-wrap gap-5">
             {data.map((obj) => {
               return <ProductCard key={obj.id} data={obj} />;
             })}

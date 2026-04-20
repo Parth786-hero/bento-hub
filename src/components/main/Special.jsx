@@ -20,7 +20,7 @@ export default function Special() {
   }, [showWelcome, dispatch]);
 
   return (
-    <div className="mt-[9rem] md:mt-[7.3rem] h-auto md:h-[20rem] rounded-2xl relative overflow-hidden div-bg p-4 md:px-8 md:py-6">
+    <div className="mt-[11rem] md:mt-[7.3rem] h-auto md:h-[20rem] rounded-2xl relative overflow-hidden div-bg p-4 md:px-8 md:py-6">
       {/* Welcome Back message inside parent */}
       <AnimatePresence>
         {showWelcome && (

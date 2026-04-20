@@ -58,7 +58,7 @@ export default function UserAccount() {
   return (
     <div className="relative inline-block" ref={dropdownRef}>
       <motion.p
-        className="px-2 py-2 rounded-md cursor-pointer font-extrabold text-[18px] flex items-center gap-1 justify-center"
+        className="px-2 py-2 hidden md:flex rounded-md cursor-pointer font-extrabold text-[18px] flex items-center gap-1 justify-center"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2 }}

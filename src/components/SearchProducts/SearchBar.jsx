@@ -30,10 +30,11 @@ export default function SearchBar({search , setSearch}) {
     <>
       <div className="fixed w-full top-0 left-0 z-50 bg-gray-100">
         <nav
-          className={`w-[95%] mx-auto flex items-center justify-between py-2 mt-2`}
+          className={`w-[95%] mx-auto flex flex-col md:flex-row items-center justify-between py-2 mt-2`}
         >
-          <h2
-            className="font-black tracking-wide text-2xl flex items-center justify-between cursor-pointer"
+         <div className="w-full md:w-auto flex items-center justify-between">
+         <h2
+            className="self-start md:self-auto font-black tracking-wide text-2xl flex items-center justify-between cursor-pointer my-auto"
             id="logo"
             onClick={() => {
               window.scrollTo({ top: 0, behavior: "smooth" });
@@ -45,8 +46,12 @@ export default function SearchBar({search , setSearch}) {
             </span>
             Bento <span className="text-green">Hub</span>
           </h2>
+          <section className="md:hidden flex items-center gap-x-8 self-end md:self-auto">
+            <CartButton />
+          </section>
+         </div>
 
-          <form className="relative flex items-center max-w-4xl mx-auto w-[100%] overflow-hidden px-1" onSubmit={handleTrigger}>
+          <form className="my-2.5 md:my-0 relative flex items-center max-w-4xl mx-auto w-[100%] overflow-hidden px-1" onSubmit={handleTrigger}>
             <button className="animate-bounce absolute top-7 transform -translate-y-1/2 bg-green text-white text-sm rounded cursor-pointer px-4 py-1 font-bold tracking-wider right-4 hover:scale-103 transition-all shadow-xl" onClick={()=>navigate("/advanceSearch")}>Switch to Advance Search Bar</button>
             <i className="fa-solid fa-magnifying-glass absolute text-[1rem] text-gray-500 left-[.8rem] top-1/2 transform -translate-y-1/2"></i>
             {search && (
@@ -73,7 +78,7 @@ export default function SearchBar({search , setSearch}) {
             />
           </form>
 
-          <section className="flex items-center gap-x-8">
+          <section className="hidden md:flex items-center gap-x-8 self-end md:self-auto">
             <CartButton />
           </section>
         </nav>
