@@ -22,7 +22,7 @@ export default function AllItemsPerCategory() {
   return (
     <>
       <>
-        <div className="mt-35 md:mt-30 h-[50vh] md:h-[75vh] shadow-xl rounded-md bg-gray-100 border border-gray-300">
+        <div className="mt-42 md:mt-30 h-[50vh] md:h-[75vh] shadow-xl rounded-md bg-gray-100 border border-gray-300">
           <h2
             className="sticky top-0 z-[10] border-b border-gray-300 font-extrabold tracking-wider h-[10%] flex items-center px-3 md:px-5"
             style={{ backgroundColor: "white" }}
