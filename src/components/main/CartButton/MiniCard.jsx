@@ -49,7 +49,7 @@ export default function MiniCard(props) {
             </div>
           )} */}
           <img
-            src={`/${image_url}`}
+            src={`${import.meta.env.BASE_URL}${image_url}`}
             alt="scene description"
             className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
           />
