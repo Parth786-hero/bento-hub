@@ -9,6 +9,7 @@ import { fetchAllProducts } from "../../../store/slices/productSlice";
 import { calculateTotalPrice, calculateGrandTotal } from "../../../utilis/priceUtils";
 import { API_URL } from "../../../main";
 export default function BottomSheet({ isOpen, onClose , donation , setDonation}) {
+  const token = localStorage.getItem("token");
   const dispatch = useDispatch();
   const { getBag, clearTheCart, fetchCart } = useCartContext();
   const { products } = useSelector((bag) => bag.products);
@@ -48,8 +49,11 @@ export default function BottomSheet({ isOpen, onClose , donation , setDonation})
       setLoading(true);
       const res = await fetch(`${API_URL}/api/checkout`, {
         method: "PUT",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
+        
+        headers: {
+          "Authorization": `Bearer ${token}`, // send token in Authorization header
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify({
           cart_id: user.cartId,
           status: "completed",
