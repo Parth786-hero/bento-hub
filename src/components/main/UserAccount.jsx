@@ -33,6 +33,7 @@ export default function UserAccount() {
     
       // Step 4: Clear cart locally
       localStorage.removeItem("cart"); // clears only cart key
+      localStorage.removeItem("token");
       navigate("/");
     } catch (err) {
       setError("Switch on the server please");

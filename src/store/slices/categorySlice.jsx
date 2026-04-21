@@ -6,7 +6,7 @@ export const fetchCategory = createAsyncThunk(
     try {
       const res = await fetch(`${API_URL}/api/category`, {
         method: "GET",
-        credentials: "include",
+        // credentials: "include",
         headers: { "Content-Type": "application/json" },
       });
 

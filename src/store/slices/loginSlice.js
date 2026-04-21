@@ -6,15 +6,18 @@ export const loginUser = createAsyncThunk(
     try {
       const res = await fetch(`${API_URL}/api/login`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(obj),
-        credentials: "include",
+        
       });
       const data = await res.json();
       
       if (!res.ok) {
         return rejectWithValue(data.message || "Login failed");
       }
+      localStorage.setItem("token" , data.token);
       return data;
     } catch (e) {
       return rejectWithValue(e.message);

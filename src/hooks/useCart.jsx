@@ -15,11 +15,16 @@ function useCart() {
   const {products} = useSelector(bag=>bag.products);
   const allProducts = products.flatMap(obj=>obj.products);
   const [productLimitError , setProductLimitError] = useState(null);
+  const token = localStorage.getItem("token");
   async function fetchCart() {
     setLoading(true);
+   
     try {
       const res = await fetch(`${API_URL}/api/getCart`, {
-        credentials: "include",
+        headers: {
+          "Authorization": `Bearer ${token}`, // send token in Authorization header
+          "Content-Type": "application/json"
+        }
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Failed to fetch cart");
@@ -54,8 +59,11 @@ function useCart() {
       try {
         await fetch(`${API_URL}/api/saveCart`, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
+          headers: {
+            "Authorization": `Bearer ${token}`, // send token in Authorization header
+            "Content-Type": "application/json"
+          },
+          
           body: JSON.stringify(items),
         });
       } catch (err) {

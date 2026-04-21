@@ -13,7 +13,7 @@ export const fetchProductsOnScroll = createAsyncThunk(
        
         const res = await fetch(url, {
           method: "GET",
-          credentials: "include",
+          // credentials: "include",
         });
   
         const data = await res.json();

@@ -59,7 +59,7 @@ export const updateIntoProductsById = createAsyncThunk(
       const res = await fetch(
         `${API_URL}/api/products/${payload.id}`,
         {
-          credentials: "include",
+          // credentials: "include",
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

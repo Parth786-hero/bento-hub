@@ -24,9 +24,13 @@ function RenderCompo() {
 
   useEffect(() => {
     async function checkAuth() {
+      const token = localStorage.getItem("token");
       try {
         const res = await fetch(`${API_URL}/api/me`, {
-          credentials: "include",
+          headers: {
+            "Authorization": `Bearer ${token}`, // send token in Authorization header
+            "Content-Type": "application/json"
+          }
         });
         const data = await res.json();
 
@@ -37,12 +41,16 @@ function RenderCompo() {
                 
             }
         }
+        
       } catch (e) {
         toast.error("Switch on the server please");
       }
     }
     checkAuth();
   }, [dispatch]);
+
+
+  
 
   return (
     <>
