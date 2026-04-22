@@ -134,9 +134,13 @@ export default function Navbar() {
                       navigate("/");
                     }}
                   >
-                    <span className="hidden md:inline">
+                    {
+                      isAuthenticated ? <span className="hidden md:inline">
+                      <i className="fa-solid fa-blog"></i>
+                    </span> : <span>
                       <i className="fa-solid fa-blog"></i>
                     </span>
+                    }
                     Bento <span className="text-green">Hub</span>
                   </h2>
                 </div>
