@@ -13,7 +13,7 @@ export default function CartButton() {
   });
   
   // whenever donation changes, save it
- 
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { getTotalNumbersOfItems, getBag } = useCartContext();
   const { products, error, loading } = useSelector((bag) => bag.products);
@@ -53,11 +53,21 @@ export default function CartButton() {
   useEffect(() => {
     localStorage.setItem("donation", donation);
   }, [donation]);
+   
+ useEffect(() => {
+  const checkScreen = () => {
+    setIsSmallScreen(window.innerWidth < 768); // md breakpoint
+  };
+  checkScreen();
+  window.addEventListener("resize", checkScreen);
+  return () => window.removeEventListener("resize", checkScreen);
+}, []);
   return (
     <>
       {user.email === "kapoorparth096@gmail.com" ? <motion.button
         // disabled
-        className="cart-btn-1 rounded-md font-semibold shadow-md flex items-center justify-center gap-2 bg-green"
+        className="cart-btn-1 rounded-md font-semibold shadow-md flex items-center justify-center gap-2 bg-green "
+       
         whileHover={{
           x: [0, -10, 10, -10, 10, 0], // small horizontal jitter
           transition: { duration: 0.4 },
@@ -126,7 +136,7 @@ export default function CartButton() {
       ) : (
         <motion.button
           disabled
-          className="cart-btn rounded-md font-semibold shadow-md flex items-center justify-center gap-2"
+          className="hidden md:flex cart-btn rounded-md font-semibold shadow-md flex items-center justify-center gap-2"
           whileHover={{
             x: [0, -10, 10, -10, 10, 0], // small horizontal jitter
             transition: { duration: 0.4 },

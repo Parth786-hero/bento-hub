@@ -134,7 +134,7 @@ export default function Navbar() {
               </h2>
               {isAuthenticated && <section className="md:hidden flex items-center gap-x-8">
                 <UserAccount />
-                <CartButton />
+               
               </section>}
 
               {!isAuthenticated && (

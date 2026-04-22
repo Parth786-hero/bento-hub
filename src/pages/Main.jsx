@@ -10,12 +10,19 @@ import Design from "../components/main/Design";
 import ProductsOnScroll from "../components/main/ProductsOnScroll";
 import AllItemsPerCategory from "../components/main/AllItemsPerCategory";
 import AdvanceSearch from "../components/main/AdvanceSearch/index.jsx";
-
+import CartButton from "../components/main/CartButton";
+import { useSelector } from "react-redux";
 export default function Main() {
+  const { isAuthenticated } = useSelector((bag) => bag.login);
   return (
-    <div className="max-w-[95%] mx-auto min-h-screen">
+    <div className="max-w-[95%] mx-auto min-h-screen relative">
       <Navbar />
-
+      {isAuthenticated && (
+       <section className="fixed bottom-6 z-200 right-6 flex items-center gap-x-8 md:hidden">
+       <CartButton />
+     </section>
+     
+      )}
       <>
         <Routes>
           {/* Default route "/" shows your main layout */}
@@ -24,9 +31,9 @@ export default function Main() {
             element={
               <>
                 <div className="overflow-hidden">
-                <Special />
-                <Category />
-                <Products />
+                  <Special />
+                  <Category />
+                  <Products />
                 </div>
               </>
             }
@@ -36,7 +43,10 @@ export default function Main() {
           <Route path="/productsOnScroll" element={<ProductsOnScroll />} />
           <Route path="/:category/:id" element={<SpecificItem />} />
           <Route path="/:name/:id/:name" element={<Design />} />
-          <Route path="/itemspercategory/:id" element={<AllItemsPerCategory/>}/>
+          <Route
+            path="/itemspercategory/:id"
+            element={<AllItemsPerCategory />}
+          />
         </Routes>
         <br />
         <Footer />
