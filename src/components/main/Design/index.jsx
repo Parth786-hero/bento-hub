@@ -60,7 +60,7 @@ export default function Design() {
 
   return (
     <>
-      <div className="mt-30 h-[70vh] shadow-xl rounded-md bg-gray-100 border-1  border-gray-300 overflow-hidden">
+      <div className="mt-38 md:mt-30 h-[70vh] shadow-xl rounded-md bg-gray-100 border-1  border-gray-300 overflow-hidden">
         <h2
           className="border-b border-gray-300 font-extrabold tracking-wider h-[10%] flex items-center px-5"
           style={{ backgroundColor: "white" }}
