@@ -6,6 +6,7 @@ import { changeModalStatus } from "../../store/slices/modalSlice";
 import { useCartContext } from "../../hooks/useCart";
 import {useNavigate} from 'react-router-dom';
 import { API_URL } from "../../main";
+import { Menu } from "lucide-react";
 export default function UserAccount() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -59,7 +60,7 @@ export default function UserAccount() {
   return (
     <div className="relative inline-block" ref={dropdownRef}>
       <motion.p
-        className="px-2 py-2 hidden md:flex rounded-md cursor-pointer font-extrabold text-[18px] flex items-center gap-1 justify-center"
+        className="hidden md:flex px-2 py-2 md:flex rounded-md cursor-pointer font-extrabold text-[18px] flex items-center gap-1 justify-center"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.2 }}
@@ -74,12 +75,23 @@ export default function UserAccount() {
           <i className="fa-solid fa-angle-down"></i>
         )}
       </motion.p>
+      <motion.p
+        className="md:hidden px-2 py-2 md:flex rounded-md cursor-pointer font-extrabold text-[18px] flex items-center gap-1 justify-center"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.2 }}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={() => setIsOpen(!isOpen)}
+      >
+       <Menu/>
+      </motion.p>
 
       {/* AnimatePresence handles exit animations */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="absolute mt-2 bg-white shadow-xl rounded-md p-4 z-50 h-auto overflow-hidden w-[18rem] left-[-50%]"
+            className="absolute mt-2 bg-white shadow-xl rounded-md p-4 z-50 h-auto overflow-hidden w-[18rem] left-[0%] md:left-[-50%]"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}

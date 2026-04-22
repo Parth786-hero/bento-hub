@@ -65,7 +65,7 @@ export default function Footer() {
             ))}
           </ul>
           <h2
-            className="w-full md:ml-[-.99rem] font-extrabold tracking-wide text-[3.5rem] flex items-center relative md:absolute bottom-0 left-1/2 transform -translate-x-1/2 text-center cursor-pointer animate-bento mt-[1.5rem] md:mt-0"
+            className="w-full md:ml-[-.99rem] font-extrabold tracking-wide text-[3.5rem] flex items-center justify-center relative md:absolute bottom-0 left-1/2 transform -translate-x-1/2 text-center cursor-pointer animate-bento mt-[1.5rem] md:mt-0"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           >
             <span>
