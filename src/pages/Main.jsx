@@ -10,8 +10,16 @@ import Design from "../components/main/Design";
 import ProductsOnScroll from "../components/main/ProductsOnScroll";
 import AllItemsPerCategory from "../components/main/AllItemsPerCategory";
 import AdvanceSearch from "../components/main/AdvanceSearch/index.jsx";
-
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 export default function Main() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    // only scroll to top on specific routes
+    if (pathname === "/") {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname]);
   return (
     <div className="max-w-[95%] mx-auto min-h-screen">
       <Navbar />
