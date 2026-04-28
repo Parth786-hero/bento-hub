@@ -3,6 +3,7 @@ import { useCartContext } from "../../../hooks/useCart";
 import AddToCartBtn from "./AddToCartBtn";
 import { useDispatch , useSelector} from "react-redux";
 import { changeModalStatus } from "../../../store/slices/modalSlice";
+// import { Flame } from "lucide-react";
 export default function ProductCard(props) {
   const dispatch = useDispatch();
   const { getItemsPerCard, productLimitError } = useCartContext();
@@ -82,7 +83,12 @@ const {user} = useSelector(bag=>bag.login);
               {description}
             </p>
           )}
+          {/* <p className="text-[10px] md:text-[12px] md:tracking-wide text-gray-500 my-1 md:my-0">{quantity}</p> */}
+          <div className="flex items-center justify-between">
           <p className="text-[10px] md:text-[12px] md:tracking-wide text-gray-500 my-1 md:my-0">{quantity}</p>
+          <p className="text-[7.5px] md:text-[8.2px] flex items-center justify-center gap-0.5 font-semibold shadow rounded-sm px-0.5 py-0.5 bg-green-100"  style={{display : "flex" , "alignItems" : "center" , justifyContent : "center"}}><span><i className="fa-regular fa-alarm-clock"></i></span>11 MINS</p>
+          </div>
+
           <div className="relative flex items-center justify-between self-end w-full h-[2.7rem] md:mt-3">
             {productLimitError?.id === id && (
               <p className="text-[9rem] md:text-[11px] text-red-600 absolute right-0 top-[-1rem] font-bold tracking-wide animate-fade">

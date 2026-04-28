@@ -106,7 +106,7 @@ body {
   @apply transform px-14 py-2 rounded-md font-normal text-white bg-green hover:scale-103 transition-transform  duration-100 cursor-pointer;
 }
 .btn-temp {
-  @apply transform px-14 py-[.4rem] rounded-full tracking-wider font-normal text-black bg-gray-200 hover:scale-103 transition-transform  duration-100 cursor-pointer;
+  @apply transform w-fit px-5.5 md:px-14 py-[.4rem] rounded-full tracking-wider font-normal text-black bg-gray-200 hover:scale-103 transition-transform  duration-100 cursor-pointer;
 }
 .btn-white{
   @apply transform px-8 py-2 rounded-md font-bold text-black bg-white hover:scale-103 transition-transform  duration-100 cursor-pointer;

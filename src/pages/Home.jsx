@@ -87,8 +87,8 @@ export default function Home() {
           </div>
           <div className="frame h-auto md:h-[70vh] rounded-xl mt-2 overflow-hidden md:p-6 py-3 md:py-6 flex justify-between items-center">
             <div className="text-white w-auto md:w-[70%] p-3 md:p-4">
-              <h1 className="text-lg md:text-[2.8rem] md:leading-[3.5rem] md:tracking-wide font-normal">
-                <span className="font-bold md:text-[4rem] text-green">W</span>here
+              <h1 className="text-[1.6rem] md:text-[2.8rem] md:leading-[3.5rem] md:tracking-wide font-normal">
+                <span className="font-bold text-4xl md:text-[4rem] text-green">W</span>here
                 chaos meets code, we deliver clarity.{" "}
                 <span className="font-bold text-green">
                   Where problems knock

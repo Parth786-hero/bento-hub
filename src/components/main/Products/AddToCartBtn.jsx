@@ -1,6 +1,7 @@
 import { useCartContext } from "../../../hooks/useCart";
 import { useSelector } from "react-redux";
 import { useState , useEffect } from "react";
+import { checkAuthority } from "../../../utilis/priceUtils";
 export default function AddToCartBtn({ id }) {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const { getItemsPerCard, addToCart, removeFromCart, error } =
@@ -30,6 +31,7 @@ export default function AddToCartBtn({ id }) {
       </button>
     );
   }
+  
   return (
     <>
       {nums === 0 ? (
@@ -40,7 +42,7 @@ export default function AddToCartBtn({ id }) {
             addToCart(id);
             // triggerSnapshot();
           }}
-          disabled={error || user.email === "kapoorparth096@gmail.com" ? true : false}
+          disabled={error || checkAuthority(user.email)}
           style={{ backgroundColor: error ? "gray" : "var(--color-green)" }}
         >
           Add

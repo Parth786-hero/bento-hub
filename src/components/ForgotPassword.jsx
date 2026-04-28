@@ -14,6 +14,7 @@ export default function ForgotPassword() {
   const [bag , setBag] = useState({password : "" , confirmPassword : ""})
   const [loader , setLoader] = useState(false);
   const [loader2 , setLoader2] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const numberRef = useRef(null);
   const passwordRef = useRef(null);
   const inputRef = useRef(null);
@@ -96,44 +97,96 @@ export default function ForgotPassword() {
       });
     }
   }, [focused]);
+  useEffect(() => {
+    const checkScreen = () => {
+      setIsSmallScreen(window.innerWidth < 768); // md breakpoint
+    };
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
   return (
     <>
-      <div className="my-3 flex items-start justify-between gap-x-4 h-auto">
-        <section
-          className="rounded-md overflow-hidden relative w-1/2 flex items-center justify-center"
+      <div className="my-6 md:my-3 flex flex-col md:flex-row items-start justify-between gap-x-4 h-auto">
+       
+        {
+          isSmallScreen ? Object.keys(userDetails).length === 0 &&  
+          <section
+          className="rounded-md md:overflow-hidden relative w-[90%] mx-auto md:w-1/2 flex items-center justify-center mb-4 md:mb-0"
           style={{ height: "stretch" }}
         >
-          <form
-            action=""
-            className="w-[90%] mt-[-1rem]"
-            onSubmit={handlePhoneNumber}
-          >
-            <div className="mb-4">
-              <label
-                htmlFor="number"
-                className="block text-gray font-medium mb-2"
-              >
-                Phone Number
-              </label>
-              <input
-                type="number"
-                id="number"
-                value={number}
-                onChange={(e) => setNumber(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green"
-                placeholder="Enter your phone number"
-              />
-            </div>
-            <motion.button
-              type="submit"
-              className="tracking-wider w-full bg-green text-white font-semibold py-2 px-4 rounded-md hover:bg-green transition duration-300 cursor-pointer"
+         <form
+          action=""
+          className="w-full md:w-[90%] mt-[-1rem]"
+          onSubmit={handlePhoneNumber}
+        >
+          <div className="mb-4">
+            <label
+              htmlFor="number"
+              className="block text-gray font-medium mb-2"
             >
-              {
-                loader ? "verifying..." : "Verify Phone Number"
-              }
-            </motion.button>
-          </form>
-          <div className="phone-cover absolute inset-0 bg-black opacity-95 removeShield  flex items-center justify-center" ref={numberRef}>
+              Phone Number
+            </label>
+            <input
+              type="number"
+              id="number"
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green"
+              placeholder="Enter your phone number"
+            />
+          </div>
+          <motion.button
+            type="submit"
+            className="tracking-wider w-full bg-green text-white font-semibold py-2 px-4 rounded-md hover:bg-green transition duration-300 cursor-pointer"
+          >
+            {
+              loader ? "verifying..." : "Verify Phone Number"
+            }
+          </motion.button>
+        </form> 
+          <div className="phone-cover border absolute inset-0 bg-black opacity-95 removeShield  flex items-center justify-center" ref={numberRef}>
+            {" "}
+            <p className="text-green text-xl tracking-wider font-semibold text-center">
+              Number verified successfully, you can now reset your password.
+            </p>
+          </div>
+        </section>
+:  <section
+          className="rounded-md md:overflow-hidden relative w-1/2 flex items-center justify-center mb-4 md:mb-0"
+          style={{ height: "stretch" }}
+        >
+         <form
+          action=""
+          className="w-full md:w-[90%] mt-[-1rem]"
+          onSubmit={handlePhoneNumber}
+        >
+          <div className="mb-4">
+            <label
+              htmlFor="number"
+              className="block text-gray font-medium mb-2"
+            >
+              Phone Number
+            </label>
+            <input
+              type="number"
+              id="number"
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green"
+              placeholder="Enter your phone number"
+            />
+          </div>
+          <motion.button
+            type="submit"
+            className="tracking-wider w-full bg-green text-white font-semibold py-2 px-4 rounded-md hover:bg-green transition duration-300 cursor-pointer"
+          >
+            {
+              loader ? "verifying..." : "Verify Phone Number"
+            }
+          </motion.button>
+        </form> 
+          <div className="phone-cover border absolute inset-0 bg-black opacity-95 removeShield  flex items-center justify-center" ref={numberRef}>
             {" "}
             <p className="text-green text-xl tracking-wider font-semibold text-center">
               Number verified successfully, you can now reset your password.
@@ -141,10 +194,11 @@ export default function ForgotPassword() {
           </div>
         </section>
 
-        <section className="rounded-md overflow-hn pt-3 relative w-1/2 flex items-center justify-center h-[15rem]">
+        }
+        <section className="rounded-md overflow-hidde pt-3 relative w-[90%] mx-auto md:w-1/2 flex items-center justify-center h-[15rem]">
           <form
             action=""
-            className="w-[90%] mt-[-1rem]"
+            className="w-full md:w-[90%] mt-[-1rem]"
             onSubmit={handlePassword}
           >
             <div className="mb-4 relative">
@@ -172,7 +226,7 @@ export default function ForgotPassword() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 20 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="absolute right-[-17rem] top-[2rem]"
+                  className="absolute lef-0 md:top-[-3rem] md:right-[-17rem]"
                 >
                   <PasswordValidator
                     password={bag.password}

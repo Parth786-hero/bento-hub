@@ -106,15 +106,15 @@ export default function SpecificItem() {
                       {productLimitError.message}
                     </p>
                   )}
-                  <div>
-                    <div className="flex items-center gap-2.5 md:gap-3">
+                  <div className="">
+                    <div className="flex flex-col md:flex-row items-start justify-center md:items-center  md:gap-3">
                       {discounted_price > 0 && (
-                        <p className="mt-2 font-extrabold md:text-lg md:text-xl">
+                        <p className="mt-2 font-extrabold md:text-xl">
                           Rs.{discounted_price}
                         </p>
                       )}
                       <p
-                        className={`mt-2 text-md md:text-xl ${
+                        className={`md:mt-2 text-md md:text-xl ${
                           discounted_price > 0
                             ? "text-gray-500 line-through"
                             : ""
@@ -123,7 +123,7 @@ export default function SpecificItem() {
                         Rs.{price}
                       </p>
                     </div>
-                    <p className="text-gray-600 text-[12px] mt-[-.2rem]">
+                    <p className="text-gray-600 text-[12px] md:mt-[-.2rem]">
                       (inclusive of all taxes)
                     </p>
                   </div>

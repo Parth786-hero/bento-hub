@@ -115,7 +115,7 @@ export default function UserAccount() {
               </p>
              {
               loader ?  <motion.p
-              className="bg-green cursor-pointer font-bold w-fit text-white rounded-md px-6 py-1"
+              className="bg-red-300 cursor-pointer font-bold w-fit text-white rounded-md px-6 py-1"
              
               whileHover={{
                 x: [0, -2, 2, -2, 2, 0],
@@ -129,7 +129,7 @@ export default function UserAccount() {
             >
               logging out...
             </motion.p> : error ? <div className="text-[14px] text-red-500 font-bold">{error}</div> :  <motion.p
-                className="bg-green cursor-pointer font-bold w-fit text-white rounded-md px-6 py-1"
+                className="bg-red-500 cursor-pointer font-bold w-fit text-white rounded-md px-6 py-1"
                 onClick={logUserOut}
                 whileHover={{
                   x: [0, -2, 2, -2, 2, 0],

@@ -50,13 +50,13 @@ export default function SearchBar({search , setSearch}) {
             <CartButton />
           </section>
          </div>
-
-          <form className="my-2.5 md:my-0 relative flex items-center max-w-4xl mx-auto w-[100%] overflow-hidden px-1" onSubmit={handleTrigger}>
-            <button className="animate-bounce absolute top-7 transform -translate-y-1/2 bg-green text-white text-sm rounded cursor-pointer px-4 py-1 font-bold tracking-wider right-4 hover:scale-103 transition-all shadow-xl" onClick={()=>navigate("/advanceSearch")}>Switch to Advance Search Bar</button>
+            <p className="flex md:hidden font-bold mt-4 text-md tracking-wide"  onClick={()=>navigate("/advanceSearch")}>Click here to switch to   &nbsp;<span className="text-green font-black tracking-wider">Advance Search Bar</span></p>
+          <form className="my-2.5 md:my-0 relative flex items-center justify-between max-w-4xl mx-auto w-[100%] overflow-hidden px-1" onSubmit={handleTrigger}>
+            <button className="hidden md:flex animate-bounce absolute top-7 transform -translate-y-1/2 bg-green text-white text-sm rounded cursor-pointer px-4 py-1 font-bold tracking-wider right-4 hover:scale-103 transition-all shadow-xl" onClick={()=>navigate("/advanceSearch")}>Switch to Advance Search Bar</button>
             <i className="fa-solid fa-magnifying-glass absolute text-[1rem] text-gray-500 left-[.8rem] top-1/2 transform -translate-y-1/2"></i>
             {search && (
               <i
-                className="fa-solid fa-xmark absolute text-[1rem] text-gray-900 right-[17rem] top-1/2 transform -translate-y-1/2 cursor-pointer p-2 flex items-center justify-center hover:scale-110"
+                className="fa-solid fa-xmark absolute text-[1rem] text-gray-900 right-[1rem] md:right-[17rem] top-1/2 transform -translate-y-1/2 cursor-pointer p-2 flex items-center justify-center hover:scale-110"
                 onClick={() => {
                   dispatch(clearResults()); 
                   setSearch("");

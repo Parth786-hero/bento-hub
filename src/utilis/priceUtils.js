@@ -14,3 +14,6 @@ export function calculateTotalPrice(cartItems, allProducts) {
     return basePrice + deliveryCharge + handlingCharge;
   }
   
+export function checkAuthority(email){
+  return email === "kapoorparth096@gmail.com";
+}

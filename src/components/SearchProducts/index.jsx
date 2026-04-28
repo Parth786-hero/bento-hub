@@ -8,7 +8,7 @@ export default function SearchProducts() {
   const [search, setSearch] = useState("");
   return (
     <>
-      <div className="min-h-[45vh] mt-35 md:mt-25 relative">
+      <div className="min-h-[45vh] mt-45 md:mt-25 relative">
         <SearchBar search = {search} setSearch={setSearch}/>
         {loading ? (
           <Loader />

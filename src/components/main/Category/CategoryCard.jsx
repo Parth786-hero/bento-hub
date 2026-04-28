@@ -8,7 +8,7 @@ export default function CategoryCard({ data }) {
     onClick={()=>{
       navigate(`/${name}/${id}/${name}`);
     }}
-      className="flex-col md:w-[7rem] md:h-[10rem] cursor-pointer"
+      className="flex-col md:w-[7rem] md:h-[10rem] cursor-pointer px-0"
       whileHover={{ scale: 1.05 }}   // single subtle hover effect
       transition={{ duration: 0.3 }}
     >
@@ -24,7 +24,7 @@ export default function CategoryCard({ data }) {
       </div>
 
       <div className="w-full h-[30%] flex items-start justify-center">
-        <h2 className="text-black md:w-[80%] text-center font-semibold leading-snug tracking-wide text-[10px] md:text-[14px]">
+        <h2 className="text-black w-[80%] text-center font-semibold leading-snug tracking-wide text-[10px] md:text-[14px]">
           {name}
         </h2>
       </div>
