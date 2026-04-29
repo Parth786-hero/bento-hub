@@ -22,7 +22,7 @@ export default function MyOrders() {
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.message || "Failed to fetch cart");
-        console.log(data.orders);
+        
        setBag(data.orders);
 
       }catch(e){
