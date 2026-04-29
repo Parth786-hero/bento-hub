@@ -101,8 +101,11 @@ export default function UserAccount() {
             <p className="mt-1 text-[12px] text-gray-800">+91 {obj.number}</p>
             <hr className="mt-1" />
             <div className="flex text-gray-700 text-[15px] tracking-wide flex-col gap-y-3 mt-2">
-              <p className="cursor-pointer hover:bg-gray-200 px-2 rounded">
-                My Orders
+              <p className="cursor-pointer hover:bg-gray-200 px-2 rounded" onClick={() => {
+    navigate("/my-orders");
+    setIsOpen(false); // close the dropdown
+  }}>
+                Order History
               </p>
               <p className="cursor-pointer hover:bg-gray-200 px-2 rounded">
                 Saved Address

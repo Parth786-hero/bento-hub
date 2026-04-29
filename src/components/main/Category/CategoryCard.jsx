@@ -8,7 +8,7 @@ export default function CategoryCard({ data }) {
     onClick={()=>{
       navigate(`/${name}/${id}/${name}`);
     }}
-      className="flex-col md:w-[7rem] md:h-[10rem] cursor-pointer px-0"
+      className="flex-col w-[5.5rem] md:w-[7rem] md:h-[10rem] cursor-pointer px-0"
       whileHover={{ scale: 1.05 }}   // single subtle hover effect
       transition={{ duration: 0.3 }}
     >

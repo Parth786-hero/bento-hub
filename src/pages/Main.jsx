@@ -10,6 +10,7 @@ import Design from "../components/main/Design";
 import ProductsOnScroll from "../components/main/ProductsOnScroll";
 import AllItemsPerCategory from "../components/main/AllItemsPerCategory";
 import AdvanceSearch from "../components/main/AdvanceSearch/index.jsx";
+import MyOrders from "../components/main/customers/MyOrders";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 export default function Main() {
@@ -45,6 +46,7 @@ export default function Main() {
           <Route path="/:category/:id" element={<SpecificItem />} />
           <Route path="/:name/:id/:name" element={<Design />} />
           <Route path="/itemspercategory/:id" element={<AllItemsPerCategory/>}/>
+          <Route path="/my-orders" element={<MyOrders/>}/>
         </Routes>
         <br />
         <Footer />
