@@ -6,7 +6,8 @@ html {
 
 
 :root{
-  font-size : 15.75px;
+  /* font-size : 15.75px; */
+  font-size : 14.5px;
 }
 .font-thin {
   font-weight : 100;
