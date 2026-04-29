@@ -5,7 +5,7 @@ export default function MyOrderCard({ created_at, products }) {
     <>
       <div
         className="cursor-pointer mb-6 md:mb-4 flex flex-col gap-3 rounded-xl px-4 py-3 transition-scale duration-200 hover:scale-102"
-        style={{ border: "1px solid rgba(0 , 0,0 , .1)" }}
+        style={{ border: "1px solid rgba(0 , 0,0 , .4)" }}
       >
         <section
           className="flex items-center justify-between pb-2"
@@ -48,12 +48,12 @@ export default function MyOrderCard({ created_at, products }) {
           </div>
           <i className="fa-solid fa-arrow-right cursor-pointer"></i>
         </section>
-        <section className="flex items-start gap-4">
-          {products.map((obj, id) => {
-            return (
+        <section className="flex items-center gap-4">
+          {(products.length > 3 ? products.slice(0, 3) : products).map(
+            (obj, idx) => (
               <div
-                key={id}
-                className="flex items-center justify-center w-24 h-16 rounded-xl overflow-hidden flex items-center justify-center py-1"
+                key={idx}
+                className="flex items-center justify-center w-24 h-16 rounded-xl overflow-hidden py-1"
                 style={{ border: "1px solid rgba(0 , 0 , 0 ,.1)" }}
               >
                 <img
@@ -62,8 +62,18 @@ export default function MyOrderCard({ created_at, products }) {
                   alt="product"
                 />
               </div>
-            );
-          })}
+            )
+          )}
+
+          {/* If more than 3, show +remaining */}
+          {products.length > 3 && (
+            <div
+              className="flex items-center justify-center rounded-xl overflow-hidden py-1 font-bold text-xl text-black"
+              // style={{ border: "1px solid rgba(0 , 0 , 0 ,.1)" }}
+            >
+              +{products.length - 3}
+            </div>
+          )}
         </section>
       </div>
     </>
