@@ -46,7 +46,10 @@ export default function SpecificItem() {
       navigate("/");
     }
   }, [item, navigate]);
-
+  useEffect(() => {
+    // scroll to top on mount
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return (
     <>
       {loading ? (
