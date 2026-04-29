@@ -94,7 +94,7 @@ export default function UserAccount() {
             className="absolute mt-2 bg-white shadow-xl rounded-md p-4 z-50 h-auto overflow-hidden w-[18rem] left-[0%] md:left-[-50%]"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+            // exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25 }}
           >
             <h2 className="font-bold text-black">{obj.fname}</h2>
@@ -104,8 +104,8 @@ export default function UserAccount() {
             <p
   className="cursor-pointer hover:bg-gray-200 px-2 rounded"
   onClick={() => {
-    setIsOpen(false); // close immediately
-    setTimeout(() => navigate("/my-orders"), 0); // navigate after state update
+    setIsOpen(false);
+    navigate("/my-orders");
   }}
 >
   Order History
