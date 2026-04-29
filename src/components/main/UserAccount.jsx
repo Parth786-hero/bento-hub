@@ -225,7 +225,9 @@ export default function UserAccount() {
   // helper to close + navigate
   const handleNavigate = (path) => {
     setIsOpen(false);
-    navigate(path);
+    setTimeout(()=>{
+      navigate(path);
+    } , 50);
   };
 
   return (
