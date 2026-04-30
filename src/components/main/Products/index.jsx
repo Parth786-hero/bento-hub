@@ -5,7 +5,12 @@ import ProductCard from "./ProductCard";
 import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../../../hooks/useCart";
 import { toast } from "react-toastify";
+import io from "socket.io-client";
+import { API_URL } from "../../../config";
+import { endDiscount } from "../../../store/slices/discountScheduler";
+const socket = io(API_URL);
 export default function Products() {
+
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const dispatch = useDispatch();
   const { products, loading, error } = useSelector((bag) => bag.products);
@@ -14,6 +19,21 @@ export default function Products() {
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetchAllProducts());
+  }, [dispatch]);
+  useEffect(() => {
+    socket.on("discountApplied", () => {
+      dispatch(fetchAllProducts()); // refresh products with discounted prices
+    });
+
+    socket.on("discountReset", () => {
+      dispatch(fetchAllProducts()); // refresh products with original prices
+      dispatch(endDiscount());
+    });
+
+    return () => {
+      socket.off("discountApplied");
+      socket.off("discountReset");
+    };
   }, [dispatch]);
   useEffect(() => {
     const checkScreen = () => {
@@ -48,6 +68,9 @@ export default function Products() {
   return (
     <>
       <div className="mt-2">
+     
+
+
         {products.map((obj, id) => {
           return (
             <div key={id} className="mb-6 md:mb-8">

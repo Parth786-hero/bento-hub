@@ -4,8 +4,8 @@ export default function MyOrderCard({ created_at, products }) {
   return (
     <>
       <div
-        className="cursor-pointer mb-6 md:mb-4 flex flex-col gap-3 rounded-xl px-4 py-3 transition-scale duration-200 hover:scale-102"
-        style={{ border: "1px solid rgba(0 , 0,0 , .4)" }}
+        className="cursor-pointer mb-6 md:mb-4 flex flex-col gap-3 rounded-xl p-4 transition-scale duration-200 hover:scale-102 shadow-xl"
+        
       >
         <section
           className="flex items-center justify-between pb-2"

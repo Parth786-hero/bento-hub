@@ -1,3 +1,4 @@
+export const API_URL = import.meta.env.VITE_API_URL;
 import "./index.css";
 import ReactDOM from "react-dom/client";
 import Home from "./pages/Home";
@@ -15,7 +16,7 @@ import ScrollToTop from "./utilis/ScrollToTop";
 import { CartProvider } from "./hooks/useCart";
 import ModalComponent from "./components/ModalCompo";
 const root = ReactDOM.createRoot(document.querySelector("#root"));
-export const API_URL = import.meta.env.VITE_API_URL;
+
 
 function RenderCompo() {
   const dispatch = useDispatch();

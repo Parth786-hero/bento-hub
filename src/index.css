@@ -294,6 +294,17 @@ body {
   margin-top : .05rem
 }
 
+.discount-banner {
+  animation: pulse 1.5s infinite;
+  font-size: 1.5rem;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
 
 
 
