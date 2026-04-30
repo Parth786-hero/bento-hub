@@ -173,13 +173,13 @@ export default function Main() {
 
       {show && (
         <div
-          className={`fixed bottom-4 left-1/2 transform -translate-x-1/2 
+          className={`fixed bottom-0.5 md:bottom-4 left-1/2 transform -translate-x-1/2 
           ${remainingSeconds <= 10 ?"bg-gray-600" : "bg-gray-900"} text-white shadow-lg 
           w-[90%] max-w-xl rounded-lg 
           flex items-center justify-center 
-          px-4 py-1.5 z-50 animate-bounce`}
+          px-3.5 py-1 z-50 animate-bounce`}
         >
-          <p className="font-bold tracking-wider text-lg flex items-center justify-center w-full">
+          <p className="font-bold tracking-wider text-md md:text-lg">
             🔥Discount Activated for<span
             className={`ml-1.5 ${
               remainingSeconds <= 10 ? "text-red-500" : ""
