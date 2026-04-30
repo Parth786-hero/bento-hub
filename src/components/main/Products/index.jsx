@@ -7,7 +7,7 @@ import { useCartContext } from "../../../hooks/useCart";
 import { toast } from "react-toastify";
 import io from "socket.io-client";
 import { API_URL } from "../../../config";
-import { endDiscount } from "../../../store/slices/discountScheduler";
+import { endDiscount , setDiscountStatus} from "../../../store/slices/discountScheduler";
 const socket = io(API_URL);
 export default function Products() {
 
@@ -21,20 +21,21 @@ export default function Products() {
     dispatch(fetchAllProducts());
   }, [dispatch]);
   useEffect(() => {
-    socket.on("discountApplied", () => {
-      dispatch(fetchAllProducts()); // refresh products with discounted prices
+    socket.on("discountStatus", (data) => {
+      if (data.active) {
+        dispatch(fetchAllProducts()); // refresh products
+        localStorage.setItem("discount", JSON.stringify(data));
+        dispatch(setDiscountStatus(data));
+      } else {
+        dispatch(fetchAllProducts());
+        localStorage.removeItem("discount");
+        dispatch(endDiscount());
+      }
     });
-
-    socket.on("discountReset", () => {
-      dispatch(fetchAllProducts()); // refresh products with original prices
-      dispatch(endDiscount());
-    });
-
-    return () => {
-      socket.off("discountApplied");
-      socket.off("discountReset");
-    };
+  
+    return () => socket.off("discountStatus");
   }, [dispatch]);
+  
   useEffect(() => {
     const checkScreen = () => {
       setIsSmallScreen(window.innerWidth < 768); // md breakpoint

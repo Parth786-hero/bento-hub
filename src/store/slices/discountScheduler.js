@@ -15,11 +15,7 @@ export const triggerDiscount = createAsyncThunk(
         throw new Error(data.message || "Failed to trigger discount");
       }
 
-      localStorage.setItem("discount", JSON.stringify({
-        startedAt: Date.now(),
-        durationMinutes,
-        percentage
-      }));
+     
       return { percentage, durationMinutes, message: data.message };
     } catch (err) {
       return rejectWithValue(err.message);
@@ -47,6 +43,14 @@ const discountSchedulerSlice = createSlice({
       state.show = true;
       
     },
+    setDiscountStatus: (state, action) => {
+        const { active, percentage, durationMinutes, startedAt } = action.payload;
+        state.show = active;
+        state.percentage = active ? percentage : 0;
+        state.durationMinutes = active ? durationMinutes : 0;
+        state.startedAt = active ? startedAt : null;
+      }
+      
   },
   extraReducers: (builder) => {
     builder
@@ -67,5 +71,5 @@ const discountSchedulerSlice = createSlice({
   },
 });
 
-export const { endDiscount, switchOn } = discountSchedulerSlice.actions;
+export const { endDiscount, switchOn, setDiscountStatus } = discountSchedulerSlice.actions;
 export default discountSchedulerSlice.reducer;
