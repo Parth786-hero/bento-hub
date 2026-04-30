@@ -185,7 +185,8 @@ export default function UserAccount() {
   const [error, setError] = useState();
   const [loader, setLoader] = useState(false);
   const dropdownRef = useRef(null);
-  const { show } = useSelector((bag) => bag.hitDiscount);
+  const { show , error:e1 , loader:loading} = useSelector((bag) => bag.hitDiscount);
+  
   async function logUserOut() {
     setLoader(true);
     try {
@@ -338,15 +339,19 @@ export default function UserAccount() {
                 )}
 
                 {checkAuthority(obj.email) &&
-                  (show ? (
-                    <motion.div className="bg-gray-500 cursor-default w-fit text-white rounded-md px-3 py-1 flex items-center justify-center gap-1.5">
+                  (loading ?  <motion.div className="bg-green cursor-default w-fit text-white rounded-md px-3 py-1 flex items-center justify-center gap-1.5">
+                  Starting...
+                </motion.div> : e1 ? <motion.div className="w-fit text-red-500 rounded-md px-2 py-1 flex items-center justify-center gap-1.5">
+                  <span>{e1}</span>
+                </motion.div>:show ? (
+                    <motion.div className="bg-gray-900 cursor-default w-fit text-white rounded-md px-3 py-1 flex items-center justify-center gap-1.5">
                       <span>Triggered</span> <MiniLoader />
                     </motion.div>
                   ) : (
                     <motion.div
                       className="bg-green cursor-pointer font-semibold w-fit text-white rounded-md px-3 py-1"
                       onClick={() => {
-                        setIsOpen(false);
+                        
                         dispatch(triggerDiscount({}));
                        
                         
