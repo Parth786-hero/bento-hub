@@ -94,7 +94,7 @@ import { switchOn } from "../store/slices/discountScheduler";
 import confetti from "canvas-confetti";
 export default function Main() {
   const { pathname } = useLocation();
-  const { show, durationMinutes , error} = useSelector((bag) => bag.hitDiscount);
+  const { show, durationMinutes} = useSelector((bag) => bag.hitDiscount);
   const dispatch = useDispatch();
   // local countdown state in seconds
   const [remainingSeconds, setRemainingSeconds] = useState(
@@ -180,7 +180,7 @@ export default function Main() {
           px-3.5 py-1 z-50 animate-bounce`}
         >
           <p className="font-bold tracking-wider text-md md:text-lg">
-            🔥Discount Activated for<span
+            🔥50% OFF Activated for<span
             className={`ml-1.5 ${
               remainingSeconds <= 10 ? "text-red-500" : ""
             }`}
