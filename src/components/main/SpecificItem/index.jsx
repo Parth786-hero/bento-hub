@@ -109,29 +109,31 @@ export default function SpecificItem() {
                       {productLimitError.message}
                     </p>
                   )}
-                  <div className="">
-                    <div className="flex flex-col md:flex-row items-start justify-center md:items-center  md:gap-3">
+                  <div className="flex flex-col w-full mt-1.5">
+                    <div className="flex justify-start items-start gap-3">
                       {discounted_price > 0 && (
-                        <p className="mt-2 font-extrabold md:text-xl">
+                        <p className="text-gray-700 font-extrabold text-[13.5px] ">
                           Rs.{discounted_price}
                         </p>
                       )}
                       <p
-                        className={`md:mt-2 text-md md:text-xl ${
-                          discounted_price > 0
-                            ? "text-gray-500 line-through"
-                            : ""
-                        }`}
+                        // className={`mt-2 text-md md:text-xl ${
+                        //   discounted_price > 0
+                        //     ? "text-gray-500 line-through"
+                        //     : ""
+                        // }`}
+                        className={`${discounted_price == 0 ? "text-gray-700 font-extrabold text-[13.5px]" : "font-bold text-[12.5px] text-gray-400 line-through"}`}
                       >
                         Rs.{price}
                       </p>
                     </div>
-                    <p className="text-gray-600 text-[12px] md:mt-[-.2rem]">
+                    <p className="text-gray-600 text-[12px] md:mt-[-.2rem] mb-1">
                       (inclusive of all taxes)
                     </p>
+                    <AddToCartBtn id={id} />
                   </div>
                   {/* <button className="specific-cart-btn">Add To cart</button> */}
-                  <AddToCartBtn id={id} />
+                  {/* <AddToCartBtn id={id} /> */}
                 </div>
                 <ol
                   className="hidden md:block mt-5 text-[12px] font-extrabold tracking-wide leading-relaxed list-decimal list-inside mb-4"

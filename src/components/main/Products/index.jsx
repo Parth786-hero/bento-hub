@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchAllProducts } from "../../../store/slices/productSlice";
 import ProductCard from "./ProductCard";
+import ProductCardLarge from "./ProductCardLarge";
 import { useNavigate } from "react-router-dom";
 import { useCartContext } from "../../../hooks/useCart";
 import { toast } from "react-toastify";
@@ -65,7 +66,7 @@ export default function Products() {
       </div>
     );
 
-  const sliceLength = isSmallScreen ? 3 : 6;
+  const sliceLength = isSmallScreen ? 3 : 7;
   return (
     <>
       <div className="mt-2">
@@ -91,7 +92,7 @@ export default function Products() {
                 )}
               </div>
               {
-                <div className="grid grid-cols-3 md:grid-cols-6 md:py-1 flex-wrap gap-2 md:gap-5">
+                <div className="grid grid-cols-3 md:grid-cols-7 md:py-1 flex-wrap gap-2 md:gap-5">
                   {/* {
                   obj.products.length > 6 ?  obj.products.slice(0 , 6).map((ele) => {
                     return <ProductCard key={ele.id} data={ele} />;

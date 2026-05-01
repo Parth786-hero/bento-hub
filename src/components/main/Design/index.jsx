@@ -29,6 +29,8 @@ export default function Design() {
   }, [data]);
   async function fetchProducts() {
     setLoader(true);
+    setProducts([]); 
+  setError(null);
     try {
       const res = await fetch(
         `${API_URL}/api/getProductsSubCatWise/${selected}`
@@ -60,17 +62,17 @@ export default function Design() {
 
   return (
     <>
-      <div className="mt-44 md:mt-30 h-[70vh] shadow-xl rounded-md bg-gray-100 border-1  border-gray-300 overflow-hidden">
+      <div className="mt-44 md:mt-30 h-[70vh] shadow-xl rounded-md border-1  border-gray-300 overflow-hidden">
         <h2
-          className="border-b border-gray-300 font-extrabold tracking-wider h-[10%] flex items-center px-5"
-          style={{ backgroundColor: "white" }}
+          className="border-b border-gray-300 bg-gray-100 font-extrabold tracking-wider h-[10%] flex items-center px-5"
+          style={{ backgroundColor: "rgba(0 , 0 , 0 , .05)" }}
         >
           {bag[bag.length - 1]}
         </h2>
         <div className="grid grid-cols-[18%_82%] md:grid-cols-[8%_92%] h-[90%]">
           <div
             className="h-100% overflow-y-auto overflow-x-hidden flex flex-col items-center justify-start gap-1 px-1 py-2"
-            style={{ backgroundColor: "white" }}
+            style={{ backgroundColor: "rgba(0 , 0 , 0 , .05)" }}
           >
             {loading && (
               <div className="h-[90%] flex justify-center items-center mt-4 overflow-hidden">
@@ -106,7 +108,7 @@ export default function Design() {
                 Nothing to display as no subcategories are added :/
               </div>
             ) : (
-              <div className=" relative grid grid-cols-2 md:grid-cols-5 py-1 flex-wrap gap-5 place-items-center h-auto">
+              <div className=" relative grid grid-cols-2 md:grid-cols-6 py-1 flex-wrap gap-5 place-items-center h-auto">
                 {products.length === 0 ? (
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90%] mt-32 text-center text-gray-500 text-4xl tracking-wider font-bold">
                     Sorry We are still buying products of this category :/

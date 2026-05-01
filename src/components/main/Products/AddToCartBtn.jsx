@@ -23,11 +23,11 @@ export default function AddToCartBtn({ id }) {
   if (stock === 0) {
     return (
       <button
-        className={`${isSmallScreen ? "product-btn-out-of-stock-mini" : "product-btn-out-of-stock"} cursor-not-allowed`}
+        className={`${isSmallScreen ? "product-btn-out-of-stock" : "product-btn-out-of-stock"} cursor-not-allowed font-semibold`}
         disabled
       >
         {" "}
-        Out of Stock{" "}
+        Ended{" "}
       </button>
     );
   }
@@ -36,14 +36,14 @@ export default function AddToCartBtn({ id }) {
     <>
       {nums === 0 ? (
         <button
-          className={`${isSmallScreen ? "product-mini-btn" : "product-btn"} font-semibold cursor-pointer`}
+          className={`${isSmallScreen ? "product-btn" : "product-btn"} font-semibold cursor-pointer`}
           onClick={(e) => {
             e.stopPropagation();
             addToCart(id);
             // triggerSnapshot();
           }}
           disabled={error || checkAuthority(user.email)}
-          style={{ backgroundColor: error ? "gray" : "var(--color-green)" }}
+          style={{ backgroundColor: error ? "gray" : "var(--color-green)"}}
         >
           Add
         </button>

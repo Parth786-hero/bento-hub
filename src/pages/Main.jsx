@@ -324,7 +324,7 @@ export default function Main() {
   }, [show]);
 
   return (
-    <div className="max-w-[95%] mx-auto min-h-screen">
+    <div className="max-w-[95%] mx-auto min-h-screen hide-scrollbar">
       {show && (
         <div
           className={`fixed bottom-0.5 md:bottom-4 left-1/2 transform -translate-x-1/2 
