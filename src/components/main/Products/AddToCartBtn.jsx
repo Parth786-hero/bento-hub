@@ -83,6 +83,7 @@ import { useState, useEffect } from "react";
 import { Plus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { checkAuthority } from "../../../utilis/priceUtils";
+
 export default function AddToCartBtn({ id }) {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const { getItemsPerCard, addToCart, removeFromCart, error } = useCartContext();
@@ -90,7 +91,8 @@ export default function AddToCartBtn({ id }) {
   const { products } = useSelector((bag) => bag.products);
   const allProducts = products.flatMap((ele) => ele.products);
   const stock = allProducts.find((ele) => ele.id === id)?.stock;
-  const {user} = useSelector(bag=>bag.login);
+  const { user } = useSelector(bag => bag.login);
+
   useEffect(() => {
     const checkScreen = () => setIsSmallScreen(window.innerWidth < 768);
     checkScreen();
@@ -100,7 +102,10 @@ export default function AddToCartBtn({ id }) {
 
   if (stock === 0) {
     return (
-      <button className="text-sm px-2 py-0.5 right-0.5 top-0.5 cursor-not-allowed absolute bg-gray-800 w-fit rounded-full text-center text-white tracking-wider" disabled>
+      <button
+        className="text-sm px-2 py-0.5 right-0.5 top-0.5 cursor-not-allowed absolute bg-gray-800 w-fit rounded-full text-center text-white tracking-wider"
+        disabled
+      >
         out of stock
       </button>
     );
@@ -112,11 +117,11 @@ export default function AddToCartBtn({ id }) {
         <motion.button
           key="add"
           disabled={error || checkAuthority(user.email)}
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.9, opacity: 0 }}
-          transition={{ duration: 0.15 }} // faster entry/exit
-          className={`${isSmallScreen ? "product-btn" : "product-btn"} font-semibold cursor-pointer absolute right-0.5 top-0.5 border border-green rounded-lg p-1`}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.15 }}
+          className="product-btn font-semibold cursor-pointer absolute right-0.5 top-0.5 border border-green rounded-lg p-1"
           onClick={(e) => {
             e.stopPropagation();
             addToCart(id);
@@ -128,28 +133,28 @@ export default function AddToCartBtn({ id }) {
       ) : (
         <motion.div
           key="counter"
-          initial={{ scaleX: 0, opacity: 0, originX: 1 }}
-          animate={{ scaleX: 1, opacity: 1, originX: 1 }}
-          exit={{ scaleX: 0, opacity: 0, originX: 1 }}
-          transition={{ duration: 0.25, ease: "easeOut" }} // quick smooth expansion
-          className="border-green border-1 adding-to-cart-btn font-semibold flex items-center justify-between gap-2 cursor-auto top-0.5 right-0.5"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.2 }}
+          className="border-green border-1 adding-to-cart-btn font-semibold flex items-center justify-between gap-2 cursor-auto absolute top-0.5 right-0.5"
           onClick={(e) => e.stopPropagation()}
           style={{ backgroundColor: error ? "gray" : "var(--color-green)" }}
         >
           <motion.i
-            whileTap={{ scale: 0.85 }}
+            whileTap={{ scale: 0.9 }}
             className="fa-solid fa-minus inline-block cursor-pointer"
             onClick={() => removeFromCart(id)}
           ></motion.i>
           <motion.p
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 0.2 }}
+            animate={{ scale: [1, 1.1, 1] }}
+            transition={{ duration: 0.15 }}
             className="font-extrabold text-[16px]"
           >
             {nums}
           </motion.p>
           <motion.i
-            whileTap={{ scale: 0.85 }}
+            whileTap={{ scale: 0.9 }}
             className="fa-solid fa-plus inline-block cursor-pointer"
             onClick={() => addToCart(id)}
           ></motion.i>
@@ -158,4 +163,3 @@ export default function AddToCartBtn({ id }) {
     </AnimatePresence>
   );
 }
-

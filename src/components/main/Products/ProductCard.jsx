@@ -20,6 +20,7 @@ export default function ProductCard(props) {
     id,
     category_name,
     discounted_price,
+    stock
   } = props.data;
   const nums = getItemsPerCard(id);
 
@@ -57,13 +58,7 @@ export default function ProductCard(props) {
         <div className="overflow-hidden relative w-full h-34 rounded-xl p-2 md:pb-2.5 border border-gray-300">
           {/* Image */}
           <AddToCartBtn id={id} />
-          {Math.floor(100 - (discounted_price / price) * 100) === 50 && (
-            <div className="absolute top-0.5 left-0.5 animate-pulse">
-              <span className="text-gray-800 text-md px-1 py-0.5 rounded-full text-xs font-bold">
-                🔥50% off
-              </span>
-            </div>
-          )}
+         
 
           <img
             src={`${import.meta.env.BASE_URL}${image_url}`}
@@ -109,9 +104,19 @@ export default function ProductCard(props) {
           <h2 className="font-extrabold mt-1 line-clamp-2 text-gray-800">
             {name} {description} Made with love
           </h2>
-          <p className="text-[13px] md:tracking-wide text-gray-500 my-1 md:my-0">
+         <div className="grid grid-cols-2 w-full">
+         <p className="flex items-center justify-start text-[13px] h-full md:tracking-wide text-gray-500 my-0 md:my-0 whitespace-nowrap">
             {quantity}
           </p>
+          {/* Math.floor(100 - (discounted_price / price) * 100) === 50 && stock > 0  */}
+          {true && (
+            <div className="animate-pulse flex items-center mt-0.5 md:mt-1 justify-end">
+              <span className="text-gray-800 md:text-md h-auto whitespace-nowrap rounded-full text-xs font-bold">
+                🔥50% off
+              </span>
+            </div>
+          )}
+         </div>
           <div className="flex items-center w-full">
             <div>
               <span className="font-black text-green text-sm">
