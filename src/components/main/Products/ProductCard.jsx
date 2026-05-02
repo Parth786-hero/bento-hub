@@ -55,7 +55,7 @@ export default function ProductCard(props) {
         className="transition ease-in-out duration-200 hover:scale-105 rounded-xl p-1 border border-gray-300 md:shadow-md"
         onClick={shoot}
       >
-        <div className="relative w-full h-28 rounded-xl p-1.5 md:pb-2.5">
+        <div className="relative w-full h-22 md:h-25 rounded-xl p-1.5 md:pb-2.5">
           {/* Image */}
           <AddToCartBtn id={id} />
          
@@ -101,7 +101,7 @@ export default function ProductCard(props) {
         </div>
 
         <div className="px-1.5 rounded-xl mt-0.5">
-          <h2 className="font-extrabold mt-1 line-clamp-2 text-gray-800">
+          <h2 className="font-extrabold mt-1 line-clamp-2 text-gray-800 text-sm md:text-md">
             {name} {description} Made with love
           </h2>
          <div className="grid grid-cols-2 w-full">

@@ -160,7 +160,7 @@ export default function SpecificItem() {
           <h2 className="mt-6 text-2xl font-bold tracking-wider">
             Similar products
           </h2>
-          <div className="mt-3 grid grid-cols-3 md:grid-cols-6 py-1 flex-wrap gap-5">
+          <div className="mt-3 grid grid-cols-3 md:grid-cols-6 py-1 flex-wrap gap-2 md:gap-5">
             {products.map((ele) => {
               return ele.id !== id && <ProductCard key={ele.id} data={ele} />;
             })}

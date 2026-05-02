@@ -103,8 +103,9 @@ export default function AddToCartBtn({ id }) {
   if (stock === 0) {
     return (
       <button
-        className="text-sm px-2 py-0.5 right-0.5 top-0.5 cursor-not-allowed absolute bg-gray-800 w-fit rounded-full text-center text-white tracking-wider"
+        className="text-xs md:text-sm px-1.5 right-0.5 top-0.5 cursor-not-allowed absolute bg-gray-800 w-fit rounded-full text-center text-white tracking-wider flex items-center justify-center"
         disabled
+        style={{padding : ".15rem .6rem"}}
       >
         out of stock
       </button>
