@@ -23,8 +23,8 @@ export default defineConfig(({ mode }) => {
         output: {
           manualChunks: {
             react: ['react', 'react-dom'],
-            ui: ['framer-motion', 'lucide-react'],
-            utils: ['lodash', 'axios']
+            ui: ['framer-motion', 'lucide-react']
+            
           }
         }
       },
