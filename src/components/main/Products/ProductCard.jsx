@@ -52,10 +52,10 @@ export default function ProductCard(props) {
   return (
     <>
       <div
-        className="min-w-[95px] transition ease-in-out duration-200 hover:scale-105"
+        className="min-w-[95px] transition ease-in-out duration-200 hover:scale-105 rounded-xl p-1 border border-gray-300 md:shadow-md"
         onClick={shoot}
       >
-        <div className="overflow-hidden relative w-full h-34 rounded-xl p-2 md:pb-2.5 border border-gray-300">
+        <div className="relative w-full h-28 rounded-xl p-1.5 md:pb-2.5">
           {/* Image */}
           <AddToCartBtn id={id} />
          
@@ -75,7 +75,7 @@ export default function ProductCard(props) {
           <p
             className="absolute bottom-0 left-0 text-[9px] flex items-center justify-center gap-0.5 font-semibold shadow rounded-sm px-0.5 py-0.5 bg-green-100 w-full"
             style={{
-              display: "flex",
+              visibility: "hidden",
               alignItems: "center",
               justifyContent: "center",
             }}
@@ -100,7 +100,7 @@ export default function ProductCard(props) {
 
         </div>
 
-        <div className="px-1.5 py-1">
+        <div className="px-1.5 rounded-xl mt-0.5">
           <h2 className="font-extrabold mt-1 line-clamp-2 text-gray-800">
             {name} {description} Made with love
           </h2>

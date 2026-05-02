@@ -92,7 +92,7 @@ export default function Products() {
                 )}
               </div>
               {
-                <div className="grid grid-cols-3 md:grid-cols-7 md:py-1 flex-wrap gap-2 md:gap-5">
+                <div className="grid grid-cols-3 md:grid-cols-7 md:py-1 flex-wrap gap-1 md:gap-5">
                   {/* {
                   obj.products.length > 6 ?  obj.products.slice(0 , 6).map((ele) => {
                     return <ProductCard key={ele.id} data={ele} />;

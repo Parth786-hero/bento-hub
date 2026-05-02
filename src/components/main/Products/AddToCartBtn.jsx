@@ -119,14 +119,16 @@ export default function AddToCartBtn({ id }) {
       <button
         key="add"
         disabled={error || checkAuthority(user.email)}
-        className="product-btn font-semibold cursor-pointer absolute right-0.5 top-0.5 border border-green rounded-lg p-1"
+        className="product-btn font-semibold cursor-pointer absolute right-0.5 top-0.5 border-1 border-green rounded-lg py-1 px-2"
         onClick={(e) => {
           e.stopPropagation();
           addToCart(id);
         }}
-        style={{ backgroundColor: error ? "gray" : "rgba(0, 128, 0, 0.05)" }}
+        style={{ backgroundColor: error ? "gray" : "rgba(0, 128, 0, 0.04)" }}
       >
-        <Plus className="text-green" />
+        {/* <Plus
+         className="text-green" /> */}
+         <span className="text-green font-bold tracking-wider text-sm" style={{fontWeight : 800}}>ADD</span>
       </button>
     ) : (
       // Animated button on larger screens
