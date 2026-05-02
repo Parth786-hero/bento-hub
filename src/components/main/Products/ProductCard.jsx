@@ -109,7 +109,7 @@ export default function ProductCard(props) {
             {quantity}
           </p>
           {/* Math.floor(100 - (discounted_price / price) * 100) === 50 && stock > 0  */}
-          {true && (
+          {Math.floor(100 - (discounted_price / price) * 100) === 50 && stock > 0 && (
             <div className="animate-pulse flex items-center mt-0.5 md:mt-1 justify-end">
               <span className="text-gray-800 md:text-md h-auto whitespace-nowrap rounded-full text-xs font-bold">
                 🔥50% off
