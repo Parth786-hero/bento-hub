@@ -100,7 +100,7 @@ export default function ProductsOnScroll() {
         </p>
       )}
 
-      <div className="grid grid-cols-3 md:grid-cols-6 py-1 flex-wrap gap-5">
+      <div className="grid grid-cols-3 md:grid-cols-6 py-1 flex-wrap gap-2 md:gap-5">
         {items.map((p) => (
           <ProductCard key={p.id} data={p} />
         ))}
@@ -114,7 +114,7 @@ export default function ProductsOnScroll() {
       )}
 
       {!hasMore && !loading && (
-        <p className="text-center text-gray-800 text-[1.8rem] tracking-wider font-bold mt-3">
+        <p className="text-center text-gray-800 text-lg md:text-[1.8rem] tracking-wider font-bold mt-3">
           You reached end...Nothing to Display.
         </p>
       )}
