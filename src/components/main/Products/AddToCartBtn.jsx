@@ -113,53 +113,92 @@ export default function AddToCartBtn({ id }) {
 
   return (
     <AnimatePresence>
-      {nums === 0 ? (
-        <motion.button
-          key="add"
-          disabled={error || checkAuthority(user.email)}
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.9 }}
+  {nums === 0 ? (
+    isSmallScreen ? (
+      // Plain button on small screens
+      <button
+        key="add"
+        disabled={error || checkAuthority(user.email)}
+        className="product-btn font-semibold cursor-pointer absolute right-0.5 top-0.5 border border-green rounded-lg p-1"
+        onClick={(e) => {
+          e.stopPropagation();
+          addToCart(id);
+        }}
+        style={{ backgroundColor: error ? "gray" : "rgba(0, 128, 0, 0.05)" }}
+      >
+        <Plus className="text-green" />
+      </button>
+    ) : (
+      // Animated button on larger screens
+      <motion.button
+        key="add"
+        disabled={error || checkAuthority(user.email)}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.9 }}
+        transition={{ duration: 0.15 }}
+        className="product-btn font-semibold cursor-pointer absolute right-0.5 top-0.5 border border-green rounded-lg p-1"
+        onClick={(e) => {
+          e.stopPropagation();
+          addToCart(id);
+        }}
+        style={{ backgroundColor: error ? "gray" : "rgba(0, 128, 0, 0.05)" }}
+      >
+        <Plus className="text-green" />
+      </motion.button>
+    )
+  ) : (
+    isSmallScreen ? (
+      // Plain counter on small screens
+      <div
+        key="counter"
+        className="border-green border-1 adding-to-cart-btn font-semibold flex items-center justify-between gap-2 cursor-auto absolute top-0.5 right-0.5"
+        onClick={(e) => e.stopPropagation()}
+        style={{ backgroundColor: error ? "gray" : "var(--color-green)" }}
+      >
+        <i
+          className="fa-solid fa-minus inline-block cursor-pointer"
+          onClick={() => removeFromCart(id)}
+        ></i>
+        <p className="font-extrabold text-[16px]">{nums}</p>
+        <i
+          className="fa-solid fa-plus inline-block cursor-pointer"
+          onClick={() => addToCart(id)}
+        ></i>
+      </div>
+    ) : (
+      // Animated counter on larger screens
+      <motion.div
+        key="counter"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.8 }}
+        transition={{ duration: 0.2 }}
+        className="border-green border-1 adding-to-cart-btn font-semibold flex items-center justify-between gap-2 cursor-auto absolute top-0.5 right-0.5"
+        onClick={(e) => e.stopPropagation()}
+        style={{ backgroundColor: error ? "gray" : "var(--color-green)" }}
+      >
+        <motion.i
+          whileTap={{ scale: 0.9 }}
+          className="fa-solid fa-minus inline-block cursor-pointer"
+          onClick={() => removeFromCart(id)}
+        ></motion.i>
+        <motion.p
+          animate={{ scale: [1, 1.1, 1] }}
           transition={{ duration: 0.15 }}
-          className="product-btn font-semibold cursor-pointer absolute right-0.5 top-0.5 border border-green rounded-lg p-1"
-          onClick={(e) => {
-            e.stopPropagation();
-            addToCart(id);
-          }}
-          style={{ backgroundColor: error ? "gray" : "rgba(0, 128, 0, 0.05)" }}
+          className="font-extrabold text-[16px]"
         >
-          <Plus className="text-green" />
-        </motion.button>
-      ) : (
-        <motion.div
-          key="counter"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          transition={{ duration: 0.2 }}
-          className="border-green border-1 adding-to-cart-btn font-semibold flex items-center justify-between gap-2 cursor-auto absolute top-0.5 right-0.5"
-          onClick={(e) => e.stopPropagation()}
-          style={{ backgroundColor: error ? "gray" : "var(--color-green)" }}
-        >
-          <motion.i
-            whileTap={{ scale: 0.9 }}
-            className="fa-solid fa-minus inline-block cursor-pointer"
-            onClick={() => removeFromCart(id)}
-          ></motion.i>
-          <motion.p
-            animate={{ scale: [1, 1.1, 1] }}
-            transition={{ duration: 0.15 }}
-            className="font-extrabold text-[16px]"
-          >
-            {nums}
-          </motion.p>
-          <motion.i
-            whileTap={{ scale: 0.9 }}
-            className="fa-solid fa-plus inline-block cursor-pointer"
-            onClick={() => addToCart(id)}
-          ></motion.i>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          {nums}
+        </motion.p>
+        <motion.i
+          whileTap={{ scale: 0.9 }}
+          className="fa-solid fa-plus inline-block cursor-pointer"
+          onClick={() => addToCart(id)}
+        ></motion.i>
+      </motion.div>
+    )
+  )}
+</AnimatePresence>
+
   );
 }
