@@ -104,7 +104,7 @@ export default function Products() {
                     ? obj.products.slice(0, sliceLength)
                     : obj.products
                   ).map((ele) => (
-                    <ProductCard key={ele.id} data={ele} />
+                      <ProductCard key={ele.id} data={ele} />
                   ))}
                 </div>
               }

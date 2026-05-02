@@ -110,7 +110,7 @@ export default function SpecificItem() {
                     </p>
                   )}
                   <div className="flex flex-col w-full mt-1.5">
-                    <div className="flex justify-start items-start gap-3">
+                    <div className="flex flex-col md:flex-row justify-start items-start gap-0.5 md:gap-3">
                       {discounted_price > 0 && (
                         <p className="text-gray-700 font-extrabold text-[13.5px] ">
                           Rs.{discounted_price}
@@ -127,7 +127,7 @@ export default function SpecificItem() {
                         Rs.{price}
                       </p>
                     </div>
-                    <p className="text-gray-600 text-[12px] md:mt-[-.2rem] mb-1">
+                    <p className="text-gray-600 text-[12px] md:mt-[-.2rem] mb-1 hidden md:flex">
                       (inclusive of all taxes)
                     </p>
                     <AddToCartBtn id={id} />
