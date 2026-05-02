@@ -82,7 +82,7 @@ import { useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { Plus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import { checkAuthority } from "../../../utilis/priceUtils";
 export default function AddToCartBtn({ id }) {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const { getItemsPerCard, addToCart, removeFromCart, error } = useCartContext();
@@ -90,7 +90,7 @@ export default function AddToCartBtn({ id }) {
   const { products } = useSelector((bag) => bag.products);
   const allProducts = products.flatMap((ele) => ele.products);
   const stock = allProducts.find((ele) => ele.id === id)?.stock;
-
+  const {user} = useSelector(bag=>bag.login);
   useEffect(() => {
     const checkScreen = () => setIsSmallScreen(window.innerWidth < 768);
     checkScreen();
@@ -111,6 +111,7 @@ export default function AddToCartBtn({ id }) {
       {nums === 0 ? (
         <motion.button
           key="add"
+          disabled={error || checkAuthority(user.email)}
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
