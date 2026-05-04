@@ -228,7 +228,7 @@ export default function Category() {
         
         {/* 2. Changed to w-max and added innerRef */}
         <div 
-          className="flex w-max transition-transform ease-in-out duration-800 px-0" 
+          className="flex w-max transition-transform ease-in-out duration-800 px-0 gap-x-1" 
           ref={innerRef}
           style={{ transform: `translateX(${translate}px)` }}
         >

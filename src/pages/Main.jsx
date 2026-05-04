@@ -243,7 +243,7 @@ const Badge = ({ remainingSeconds }) => {
   const isExpired = remainingSeconds <= 0;
 
   return (
-    <div className="fixed bottom-6 right-8 flex flex-col items-center z-50">
+    <div className="fixed bottom-3 md:bottom-6 right-3 md:right-8 flex flex-col items-center z-50">
       <motion.div
         initial={{ opacity: 0, scale: 3, x: 200, y: -200 }} // dramatic entrance
         animate={
@@ -304,7 +304,6 @@ const Badge = ({ remainingSeconds }) => {
     </div>
   );
 };
-
 
 const socket = io(API_URL);
 
@@ -374,8 +373,6 @@ export default function Main() {
     }
   }, [dispatch]);
 
- 
-
   useEffect(() => {
     if (pathname === "/") {
       window.scrollTo(0, 0);
@@ -394,12 +391,7 @@ export default function Main() {
 
   return (
     <div className="max-w-[95%] mx-auto min-h-screen hide-scrollbar">
-      {show && (
- <Badge remainingSeconds={remainingSeconds}/>
-      
-      
-        
-      )}
+      {show && <Badge remainingSeconds={remainingSeconds} />}
       <Navbar />
       <Routes>
         <Route

@@ -52,7 +52,7 @@ export default function ProductCard(props) {
   return (
     <>
       <div
-        className="transition ease-in-out duration-200 hover:scale-105 rounded-xl p-1 border border-gray-300 md:shadow-md"
+        className="transition ease-in-out duration-200 hover:scale-105 rounded-xl p-1 border border-gray-300 shadow"
         onClick={shoot}
       >
         <div className="relative w-full h-22 md:h-25 rounded-xl p-1.5 md:pb-2.5">
