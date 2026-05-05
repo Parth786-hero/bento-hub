@@ -84,7 +84,7 @@ export default function AllItemsPerCategory() {
  </h2>
 
  {/* Only this section scrolls */}
- <div className="hide-scrollbar overflow-y-auto overflow-x-hidden grid grid-cols-3 md:grid-cols-7 gap-2 md:gap-5 px-3 relative mt-4">
+ <div className="hide-scrollbar overflow-y-auto overflow-x-hidden grid grid-cols-3 md:grid-cols-7 gap-2 md:gap-5 px-3 pb-3 relative mt-4">
    {loading && (
      <div className="absolute inset-0 flex items-center justify-center">
        <Loader />

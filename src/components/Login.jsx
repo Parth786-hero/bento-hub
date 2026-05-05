@@ -27,7 +27,7 @@ export default function Login() {
     try {
       await dispatch(loginUser(bag)).unwrap();
     
-      toast.success("Hey, Log in Successfull...");
+      // toast.success("Hey, Log in Successfull...");
       dispatch(changeModalStatus({ show: false }));
       navigate("/");
     } catch (e) {

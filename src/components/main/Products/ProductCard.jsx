@@ -52,7 +52,7 @@ export default function ProductCard(props) {
   return (
     <>
       <div
-        className="transition ease-in-out duration-200 hover:scale-105 rounded-xl p-1 border border-gray-300 shadow"
+        className="transition ease-in-out duration-200 hover:scale-105 rounded-xl p-1 border border-gray-300 md:shadow"
         onClick={shoot}
       >
         <div className="relative w-full h-22 md:h-25 rounded-xl p-1.5 md:pb-2.5">
@@ -100,7 +100,7 @@ export default function ProductCard(props) {
 
         </div>
 
-        <div className="px-1.5 rounded-xl mt-0.5">
+        <div className="px-1 md:px-1.5 rounded-xl mt-0.5">
           <h2 className="font-extrabold mt-1 line-clamp-2 text-gray-800 text-sm md:text-md">
             {name} {description} Made with love
           </h2>

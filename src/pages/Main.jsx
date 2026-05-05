@@ -390,7 +390,9 @@ export default function Main() {
   }, [show]);
 
   return (
-    <div className="max-w-[95%] mx-auto min-h-screen hide-scrollbar">
+    <>
+    
+      <div className="max-w-[95%] mx-auto min-h-screen hide-scrollbar">
       {show && <Badge remainingSeconds={remainingSeconds} />}
       <Navbar />
       <Routes>
@@ -415,5 +417,6 @@ export default function Main() {
       <br />
       <Footer />
     </div>
+    </>
   );
 }
