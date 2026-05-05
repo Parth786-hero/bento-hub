@@ -130,18 +130,18 @@ export default function ProductCard(props) {
 
             <div className="flex-1 border-b border-gray-300 ml-2"></div>
           </div>
-          <div className="flex items-center gap-x-1 my-1">
+          <div className="flex items-center gap-x-1 my-1 justify-start">
             {discounted_price > 0 && (
-              <p className="text-gray-900 font-black text-[13.5px] ">
+              <p className="text-gray-900 font-black text-[13.5px]">
                 ₹{discounted_price}
               </p>
             )}
             <p
-              className={`${
+              className={`h-full ${
                 discounted_price == 0
                   ? "text-gray-700 font-black text-[13.5px]"
-                  : "font-bold text-[12.5px] text-gray-400 line-through"
-              }`}
+                  : "font-bold text-[11.5px] md:text-[12.5px] text-gray-400 line-through"
+              } flex items-center justify-center mb-0`}
             >
               ₹{price}
             </p>
