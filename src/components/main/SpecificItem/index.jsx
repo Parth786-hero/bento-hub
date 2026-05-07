@@ -7,6 +7,7 @@ import { categoryWiseProduct } from "../../../store/slices/productByCategorySlic
 import AddToCartBtn from "../Products/AddToCartBtn";
 import { useCartContext } from "../../../hooks/useCart";
 import { fetchAllProducts } from "../../../store/slices/productSlice";
+
 export default function SpecificItem() {
   const { productLimitError } = useCartContext();
   const { products, loading, error } = useSelector(
@@ -19,7 +20,7 @@ export default function SpecificItem() {
   const location = useLocation();
   const navigate = useNavigate();
   const { item } = location.state || {};
-
+    
   const {
     id,
     description,
@@ -49,7 +50,9 @@ export default function SpecificItem() {
   useEffect(() => {
     // scroll to top on mount
     window.scrollTo({ top: 0, behavior: "smooth" });
+    
   }, []);
+ 
   return (
     <>
       {loading ? (
@@ -99,9 +102,10 @@ export default function SpecificItem() {
                 <p className="text-[14px] mb-4 font-normal text-gray-500">{`Home${decodeURIComponent(
                   location.pathname
                 )}`}</p>
-                <h2 className="text-2xl md:text-3xl font-bold tracking-wider">{name}</h2>
-                <p className="text-lg md:text-xl my-2">{description
-                }.</p>
+                <h2 className="text-2xl md:text-3xl font-bold tracking-wider">
+                  {name}
+                </h2>
+                <p className="text-lg md:text-xl my-2">{description}.</p>
                 <p className="text-gray-500">{quantity}</p>
                 <div className="relative flex items-center justify-between">
                   {productLimitError?.id === id && (
@@ -122,7 +126,11 @@ export default function SpecificItem() {
                         //     ? "text-gray-500 line-through"
                         //     : ""
                         // }`}
-                        className={`${discounted_price == 0 ? "text-gray-700 font-extrabold text-[13.5px]" : "font-bold text-[12.5px] text-gray-400 line-through"}`}
+                        className={`${
+                          discounted_price == 0
+                            ? "text-gray-700 font-extrabold text-[13.5px]"
+                            : "font-bold text-[12.5px] text-gray-400 line-through"
+                        }`}
                       >
                         Rs.{price}
                       </p>
@@ -160,11 +168,15 @@ export default function SpecificItem() {
           <h2 className="mt-6 text-2xl font-bold tracking-wider">
             Similar products
           </h2>
-          <div className="mt-3 grid grid-cols-3 md:grid-cols-6 py-1 flex-wrap gap-2 md:gap-5">
+          <div
+            className="mt-3 grid grid-flow-col auto-cols-[minmax(130px,1fr)] md:grid-cols-7
+                overflow-x-auto py-1 md:py-2 gap-2 md:gap-5 hide-scrollbar"
+          >
             {products.map((ele) => {
               return ele.id !== id && <ProductCard key={ele.id} data={ele} />;
             })}
           </div>
+          
         </div>
       )}
     </>

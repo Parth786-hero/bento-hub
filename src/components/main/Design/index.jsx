@@ -7,6 +7,7 @@ import { useEffect, useRef } from "react";
 import { useState } from "react";
 import ProductCard from "../Products/ProductCard";
 import { API_URL } from "../../../main";
+import { fetchAllProducts } from "../../../store/slices/productSlice";
 export default function Design() {
   const location = useLocation();
   const isMounted = useRef(false);
@@ -59,7 +60,7 @@ export default function Design() {
       fetchProducts();
     }
   }, [selected, dispatch]);
-
+  
   return (
     <>
       <div className="mt-44 md:mt-30 h-[70vh] shadow-xl rounded-md border-1  border-gray-300 overflow-hidden">

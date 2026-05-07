@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useContext, createContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserCartId } from "../store/slices/loginSlice";
 import { API_URL } from "../main";
+import { fetchAllProducts } from "../store/slices/productSlice";
 function useCart() {
   const dispatch = useDispatch();
   const [items, setItems] = useState(() => {
@@ -16,6 +17,7 @@ function useCart() {
   const allProducts = products.flatMap(obj=>obj.products);
   const [productLimitError , setProductLimitError] = useState(null);
   const token = localStorage.getItem("token");
+  
   async function fetchCart() {
     setLoading(true);
    
@@ -44,7 +46,11 @@ function useCart() {
   useEffect(() => {
    
     fetchCart();
+
   }, []);
+  useEffect(()=>{
+    dispatch(fetchAllProducts());
+  } , [dispatch])
 
   // Persist to localStorage
   useEffect(() => {

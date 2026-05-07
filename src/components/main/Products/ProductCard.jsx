@@ -100,7 +100,7 @@ export default function ProductCard(props) {
 
         </div>
 
-        <div className="px-1 md:px-1.5 rounded-xl mt-0.5">
+        <div className="px-0.5 md:px-1.5 rounded-xl mt-0.5">
           <h2 className="font-extrabold mt-1 line-clamp-2 text-gray-800 text-sm md:text-md">
             {name} {description} Made with love
           </h2>

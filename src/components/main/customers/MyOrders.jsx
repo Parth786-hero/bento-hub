@@ -9,29 +9,32 @@ export default function MyOrders() {
   const [bag, setBag] = useState([]);
   const [loader , setLoader] = useState(false);
   const [error , setError] = useState(null);
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    async function fetchDetails(){
-      try{
-        setLoader(true);
-        const res = await fetch(`${API_URL}/api/fetchOrderHistoryPerUser`, {
-          headers: {
-            "Authorization": `Bearer ${token}`, // send token in Authorization header
-            "Content-Type": "application/json"
-          }
-        });
-        const data = await res.json();
-        if (!res.ok) throw new Error(data.message || "Failed to fetch cart");
-        
-       setBag(data.orders);
+  const token = localStorage.getItem("token");
+  async function fetchDetails(){
+    try{
+      setLoader(true);
+      const res = await fetch(`${API_URL}/api/fetchOrderHistoryPerUser`, {
+        headers: {
+          "Authorization": `Bearer ${token}`, // send token in Authorization header
+          "Content-Type": "application/json"
+        }
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Failed to fetch cart");
+      
+     setBag(data.orders);
+     return data.orders;
 
-      }catch(e){
-        setError(e.message || "Something went wrong.")
-      }finally{
-        setLoader(false);
-        
-      }
+    }catch(e){
+      setError(e.message || "Something went wrong.")
+    }finally{
+      setLoader(false);
+      
     }
+  }
+  useEffect(() => {
+    
+   
     fetchDetails();
   }, []);
   
@@ -62,3 +65,4 @@ export default function MyOrders() {
     </>
   );
 }
+
