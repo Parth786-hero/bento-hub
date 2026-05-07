@@ -34,7 +34,7 @@ function CartBanner({ show, getBag }) {
             transition: { duration: 0.7, ease: [0.4, 0, 0.2, 1] },
           }}
           layout
-          className="flex items-center gap-3 px-1.5 py-1.5 fixed w-fit bg-green bottom-2 z-50 
+          className="flex items-center gap-3 px-2.5 py-2 fixed w-fit bg-green bottom-2 z-50 
                      left-1/2 transform -translate-x-1/2 rounded-full text-white shadow-xl"
         >
           <div className="p-0.5 flex items-center">
@@ -64,12 +64,12 @@ function CartBanner({ show, getBag }) {
                     delay: idx * 0.1, // staggered drop-in
                   }}
                   whileHover={{ scale: 1.2, rotate: 5, zIndex: 50 }}
-                  className={`bg-white rounded-full p-0.5 w-8 h-8 overflow-hidden shadow-md 
+                  className={`bg-white rounded-full p-0.5 w-9 h-9 overflow-hidden shadow-md 
                     -ml-3 first:ml-0 relative`}
                   style={{ zIndex: idx + 1 }}
                 >
                   <img
-                    src={obj?.image_url}
+                    src={`${import.meta.env.BASE_URL}${obj?.image_url}`}
 
                     alt={obj?.name}
                     className="w-full h-full object-cover object-center"
@@ -85,7 +85,7 @@ function CartBanner({ show, getBag }) {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, type: "spring", stiffness: 250 }}
-                className="text-md font-bold tracking-wide whitespace-nowrap"
+                className="text-lg font-bold tracking-wide whitespace-nowrap"
               >
                 View Cart
               </motion.span>
